@@ -90,7 +90,7 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, SpectrumBlockEntities.AUXILIARY_INK_SUPPLIER, world.isClientSide ? null : AuxiliaryInkSupplierBlockEntity::serverTick);
+        return createTickerHelper(type, BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, world.isClientSide ? null : AuxiliaryInkSupplierBlockEntity::serverTick);
     }
 
 }

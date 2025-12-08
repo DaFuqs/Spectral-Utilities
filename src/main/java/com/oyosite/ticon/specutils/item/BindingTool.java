@@ -1,7 +1,15 @@
 package com.oyosite.ticon.specutils.item;
 
-
+import com.oyosite.ticon.specutils.block.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -11,40 +19,54 @@ public class BindingTool extends Item {
         super(settings);
     }
 
-    var ItemStack.target: BlockPos?
-        get() = getSubNbt("target_data")?.run{BlockPos(getInt("x"),getInt("y"),getInt("z"))}
-        set(value) {value?.apply{getOrCreateSubNbt("target_data").run{putInt("x", x);putInt("y",y);putInt("z",z)}}?:removeSubNbt("target_data")}
-
-    override fun useOnBlock(context: ItemUsageContext): ActionResult {
-        val pos = context.blockPos
-        val be = context.world.getBlockEntity(pos)
-        (be as? LinkableBlockEntity)?.let{
-            if(context.stack.target?.let(it::canBind) == false) return ActionResult.FAIL
-            it.targetPos = context.stack.target
-            return ActionResult.SUCCESS
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        return super.useOn(context);
+        
+        BlockPos pos = context.getClickedPos();
+        BlockEntity be = context.getLevel().getBlockEntity(pos);
+        if(be instanceof LinkableBlockEntity linkableBlockEntity) {
+            ItemStack usedStack = context.getItemInHand();
+            
+            @Nullable BlockPos targetPos = getTarget(usedStack);
+            if(targetPos == null) return InteractionResult.FAIL;
+            if(!linkableBlockEntity.canBind(targetPos)) return InteractionResult.FAIL;
+            
+            it.targetPos = targetPos;
+            return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
         }
-
-        context.stack.target = pos
-
-        return ActionResult.SUCCESS
+        
+        setTarget(context.getItemInHand(), pos);
+        
+        return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
     }
-
-    override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
-        val stack = user.getStackInHand(hand)
-        if(user.isSneaking)stack.target = null
-        return TypedActionResult.pass(stack)
+    
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        ItemStack stack = player.getItemInHand(usedHand);
+        if(player.isCrouching()) {
+            setTarget(stack, null);
+            return InteractionResultHolder.success(stack);
+        }
+        return InteractionResultHolder.pass(stack);
     }
-
-    override fun appendTooltip(
-        stack: ItemStack,
-        world: World?,
-        tooltip: MutableList<Text>,
-        context: TooltipContext
-    ) {
-        super.appendTooltip(stack, world, tooltip, context)
-        val pos = stack.target
-        if(pos == null) tooltip.add(Component.Text.translatable("item.specutils.binding_tool.tooltip.unlinked"))
-        else tooltip.add(Component.Text.translatable("item.specutils.binding_tool.tooltip.linked_to", pos.x, pos.y, pos.z))
-
+    
+    @Override
+    public void appendHoverText(net.minecraft.world.item.ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        
+        BlockPos pos = getTarget(stack);
+        if(pos == null) {
+            tooltipComponents.add(Component.translatable("item.specutils.binding_tool.tooltip.unlinked"));
+        }
+        else tooltipComponents.add(Component.translatable("item.specutils.binding_tool.tooltip.linked_to", pos.getX(), pos.getY(), pos.getZ()));
+    }
+    
+    private @Nullable BlockPos getTarget(net.minecraft.world.item.ItemStack stack) {
+        get() = getSubNbt("target_data")?.run{BlockPos(getInt("x"),getInt("y"),getInt("z"))}
+    }
+    
+    private BlockPos setTarget(net.minecraft.world.item.ItemStack stack, @Nullable BlockPos pos) {
+        set(value) {value?.apply{getOrCreateSubNbt("target_data").run{putInt("x", x);putInt("y",y);putInt("z",z)}}?:removeSubNbt("target_data")}
     }
 }
