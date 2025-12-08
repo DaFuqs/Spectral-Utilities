@@ -1,6 +1,7 @@
 package com.oyosite.ticon.specutils.block.auxilary_ink_supplier;
 
 import com.mojang.serialization.*;
+import com.oyosite.ticon.specutils.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
@@ -17,7 +18,8 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-@SuppressWarnings("OVERRIDE_DEPRECATION")
+import java.util.*;
+
 public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     
     protected static final VoxelShape BASE_SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 10.0, 12.0);
@@ -63,23 +65,18 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(level.isClientSide()) return ItemInteractionResult.SUCCESS;
         
-        @Nullable AuxiliaryInkSupplierBlockEntity blockEntity = level.getBlockEntity(pos, SpectrumBlockEntities.AUXILIARY_INK_SUPPLIER);
-        if(blockEntity == null) return ItemInteractionResult.CONSUME;
+        Optional<AuxiliaryInkSupplierBlockEntity> blockEntity = level.getBlockEntity(pos, BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE);
+        if(blockEntity.isEmpty()) return ItemInteractionResult.CONSUME;
         
-        if(stack.isEmpty() || stack.getItem() instanceof InkStorageItem<?> && this.exchangeStack(level, pos, player, hand, stack, blockEntity, 0)){
-            blockEntity.inventoryChanged();
-            blockEntity.setOwner(player);
+        AuxiliaryInkSupplierBlockEntity auxiliaryInkSupplierBlockEntity = blockEntity.get();
+        if(stack.isEmpty() || stack.getItem() instanceof InkStorageItem<?> && this.exchangeStack(level, pos, player, hand, stack, auxiliaryInkSupplierBlockEntity, 0)){
+            auxiliaryInkSupplierBlockEntity.inventoryChanged();
+            auxiliaryInkSupplierBlockEntity.setOwner(player);
         }
         
         return ItemInteractionResult.CONSUME;
     }
     
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-
-    }
-    
-    // TODO: needed?
     @Override
     protected int getLightBlock(BlockState state, BlockGetter level, BlockPos pos) {
         return 0;

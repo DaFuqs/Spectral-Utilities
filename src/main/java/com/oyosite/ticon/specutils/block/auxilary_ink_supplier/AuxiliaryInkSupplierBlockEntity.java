@@ -15,8 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-import java.util.*
-
+import java.util.*;
 
 public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, LinkableBlockEntity {
     
@@ -28,7 +27,7 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
     private BlockPos targetPos = null;
 	
 	public AuxiliaryInkSupplierBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, pos, state);
+        super(BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, pos, state, 1);
     }
     
     @Override
@@ -101,8 +100,8 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
                 storageItem.setEnergyStorage(heldStack, inkStorage)
             }
             
-            targetBe.setInkDirty()
-            targetBe.markDirty()
+            targetBe.setInkDirty();
+            targetBe.markDirty();
         }
         
         if(canProvide){

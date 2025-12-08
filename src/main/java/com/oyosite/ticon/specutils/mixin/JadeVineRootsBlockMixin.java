@@ -1,52 +1,68 @@
 package com.oyosite.ticon.specutils.mixin;
 
+import com.llamalad7.mixinextras.injector.*;
 import com.oyosite.ticon.specutils.block.*;
 import com.oyosite.ticon.specutils.config.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(JadeVineRootsBlock.class)
-public class JadeVineRootsBlockMixin {
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Inject(
-            method = "onNaturesStaffUse(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)Z",
-            at = @At("HEAD")
-    )
-    void dropJadeJelly(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfoReturnable<Boolean> cir){
-        if(!AutoConfig.getConfigHolder(CommonConfig.class).getConfig().getJadeVinesDropJadeJellyWhenRevived())return;
+public abstract class JadeVineRootsBlockMixin {
+    
+    @Shadow public abstract BlockPos getLowestRootsPos(@NotNull Level world, @NotNull BlockPos blockPos);
+    
+    @Inject(method = "onNaturesStaffUse(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)Z", at = @At("HEAD"))
+    void dropJadeJelly(Level level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<Boolean> cir){
+        if(!AutoConfig.getConfigHolder(CommonConfig.class).getConfig().jadeVinesDropJadeJellyWhenRevived) {
+            return;
+        }
+        
         int i;
-        for(i = 1;world.getBlockState(pos.down(i)).getBlock() == SpectrumBlocks.JADE_VINE_ROOTS;i++);
+        for(i = 1;level.getBlockState(pos.below(i)).getBlock() == SpectrumBlocks.JADE_VINE_ROOTS;i++);
 
-        BlockState vine = world.getBlockState(pos.down(i));
+        BlockState vine = level.getBlockState(pos.below(i));
         if(vine.getBlock() == SpectrumBlocks.JADE_VINES) {
-            Vec3d c = pos.down(i).toCenterPos();
-            ItemScatterer.spawn(world, c.x, c.y, c.z, new ItemStack(SpectrumItems.JADE_JELLY, world.random.nextInt(3) + 3));
+            Vec3 c = pos.below(i).getCenter();
+            Containers.dropItemStack(level, c.x, c.y, c.z, new ItemStack(SpectrumItems.JADE_JELLY, level.random.nextInt(3) + 3));
         }
     }
 
-    @Inject(at=@At("RETURN"),method = "canGrow(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)Z", locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
-    void modifyCanGrow(World world, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir, BlockEntity be){
-        if(cir.getReturnValue() || !(be instanceof JadeVineRootsBlockEntity jv))return;
-        long dayTime = world.getTimeOfDay();
-        if(TimeHelper.getDay(dayTime + 1000L) == TimeHelper.getDay(jv.getLastGrownTime() + 1000L))return;
+    @ModifyReturnValue(at=@At("RETURN"),method = "canGrow(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z")
+    boolean modifyCanGrow(boolean original, @NotNull Level world, @NotNull BlockPos blockPos){
+        BlockEntity blockEntity = world.getBlockEntity(this.getLowestRootsPos(world, blockPos));
+        
+        if(original || !(blockEntity instanceof JadeVineRootsBlockEntity jv)) {
+            return original;
+        }
+        
+        long dayTime = world.getDayTime();
+        if(TimeHelper.getDay(dayTime + 1000L) == TimeHelper.getDay(jv.getLastGrownTime() + 1000L)) return false;
 
         for(int i = 0; i < 8; i++){
-            BlockPos pos = blockPos.up(1+i);
+            BlockPos pos = blockPos.above(1+i);
             BlockState state = world.getBlockState(pos);
             if(state.getBlock() instanceof MoonstoneGrowLampBlock) {
-                cir.setReturnValue(state.get(MoonstoneGrowLampBlock.Companion.getBRIGHTNESS()) > 7 + i);
-                return;
+                original = state.getValue(MoonstoneGrowLampBlock.BRIGHTNESS) > 7 + i;
+                return original;
             }
-            if(state.isOpaque())break;
+            if(state.isSolid()) {
+                break;
+            }
         }
+        return original;
     }
 }

@@ -1,27 +1,29 @@
 package com.oyosite.ticon.specutils.mixin;
 
+import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import net.minecraft.world.level.block.state.*;
+import org.spongepowered.asm.mixin.*;
 
-import static de.dafuqs.spectrum.blocks.crystallarieum.SpectrumClusterBlock.GrowthStage.CLUSTER;
-
-@Mixin(CrystallarieumGrowableBlock.class)
-public abstract class CrystallarieumGrowableBlockMixin extends net.minecraft.world.level.block.Block {
-    @Shadow @Final public CrystallarieumGrowableBlock.GrowthStage growthStage;
-
-    public CrystallarieumGrowableBlockMixin(Settings settings) {
-        super(settings);
+@Mixin(SpectrumClusterBlock.class)
+public abstract class CrystallarieumGrowableBlockMixin extends Block {
+    
+    @Shadow @Final
+	protected SpectrumClusterBlock.GrowthStage growthStage;
+    
+    public CrystallarieumGrowableBlockMixin(Properties properties) {
+        super(properties);
     }
-
+    
     @Override
-    public boolean hasComparatorOutput(BlockState state) {
+    protected boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
-
+    
     @Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         switch (growthStage){
             case SMALL -> {return 1;}
             case LARGE -> {return 8;}

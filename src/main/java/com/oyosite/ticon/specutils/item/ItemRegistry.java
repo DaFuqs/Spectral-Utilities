@@ -1,4 +1,4 @@
-package com.oyosite.ticon.specutils.item
+package com.oyosite.ticon.specutils.item;
 
 import com.oyosite.ticon.specutils.*;
 import de.dafuqs.spectrum.api.energy.color.*;

@@ -3,6 +3,7 @@ package com.oyosite.ticon.specutils.block
 
 import com.oyosite.ticon.specutils.*;
 import com.oyosite.ticon.specutils.block.CrystallarieumMaterial.*;
+import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
@@ -38,9 +39,9 @@ public record CrystallarieumMaterial(
 		fun createBuds(baseBlock:Block) =
 		
 		apply {
-			smallBud = CrystallarieumGrowableBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.SMALL)
-			largeBud = CrystallarieumGrowableBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.LARGE)
-			cluster = CrystallarieumGrowableBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.CLUSTER)
+			smallBud = new SpectrumClusterBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.SMALL)
+			largeBud = new SpectrumClusterBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.LARGE)
+			cluster = new SpectrumClusterBlock(crystallarieumGrowableBlockSettings(baseBlock), CrystallarieumGrowableBlock.GrowthStage.CLUSTER)
 		}
 		
 		fun input(ingredient:Ingredient) =

@@ -4,11 +4,11 @@ import com.oyosite.ticon.specutils.*;
 import net.minecraft.resources.*;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 
-public class ScoreboardComponentEntrypoint extends ScoreboardComponentInitializer {
+public class ScoreboardComponentEntrypoint extends ScoreboardCom {
 
-    public static String ENDER_FLASK = ComponentRegistry.getOrCreate(SpectralUtilities.id("ender_flask"), StaticEnderInkStorageComponent::class)
+    public static String ENDER_FLASK = ComponentRegistry.getOrCreate(SpectralUtilities.id("ender_flask"), StaticEnderInkStorageComponent::class);
 
-    public void registerScoreboardComponentFactories(registry: ScoreboardComponentFactoryRegistry) {
+    public void registerScoreboardComponentFactories(ScoreboardComponentFactoryRegistry registry) {
         registry.registerScoreboardComponent(ENDER_FLASK, ::StaticEnderInkStorageComponent)
     }
 

@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.items.energy.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
@@ -22,17 +23,18 @@ import java.util.*;
 public class EnderFlask extends InkFlaskItem {
     
     public static final InkStorage DUMMY_ENERGY_STORAGE = new SingleInkStorage(0);
+    public static ServerScoreboard scoreboard;
     
     protected InkColor inkColor;
     
     public EnderFlask(Properties settings, InkColor inkColor) {
-        super(settings, StaticEnderInkStorageComponent.inkCapacity);
+        super(settings, StaticEnderInkStorageComponent.CAPACITY);
         this.inkColor = inkColor;
     }
     
     @Override
     public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
-        val owner = itemStack?.owner?:return DUMMY_ENERGY_STORAGE
+        UUID owner = itemStack?.owner?:return DUMMY_ENERGY_STORAGE
         return ScoreboardComponentEntrypoint.ENDER_FLASK[scoreboard?:return DUMMY_ENERGY_STORAGE][owner, color.dyeColor]
     }
     
@@ -59,8 +61,10 @@ public class EnderFlask extends InkFlaskItem {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
         
+        if(scoreboard != null && entity instanceof Player player) {
+            PlayerEntity?.fetchScoreboard();
+        }
         
-        scoreboard?: (entity as? PlayerEntity)?.fetchScoreboard()
     }
     
     @Override

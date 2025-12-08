@@ -25,7 +25,7 @@ public class ColorLockedInkStorage extends SingleInkStorage {
     
     @Override
     public void setEnergy(Map<InkColor, Long> colors, long total) {
-        super.setEnergy(Map.of(colors.get(this.storedColor), total);
+        super.setEnergy(Map.of(this.storedColor, colors.get(this.storedColor)), total);
     }
     
     @Override
