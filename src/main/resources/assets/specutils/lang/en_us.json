@@ -1,0 +1,45 @@
+{
+  "block.specutils.basalt_auxiliary_ink_supplier": "Basalt Auxiliary Ink Supplier",
+  "block.specutils.calcite_auxiliary_ink_supplier": "Calcite Auxiliary Ink Supplier",
+  "block.specutils.moonstone_grow_lamp": "Moonstone Grow Lamp",
+  "item.specutils.binding_tool": "Binding Tool",
+  "item.specutils.binding_tool.tooltip.linked_to": "Bound to x=%s, y=%s, z=%s.",
+  "item.specutils.binding_tool.tooltip.unlinked": "Not Bound.",
+
+  "item.specutils.black_ender_flask": "Black Ender Flask",
+  "item.specutils.blue_ender_flask": "Blue Ender Flask",
+  "item.specutils.brown_ender_flask": "Brown Ender Flask",
+  "item.specutils.cyan_ender_flask": "Cyan Ender Flask",
+  "item.specutils.gray_ender_flask": "Gray Ender Flask",
+  "item.specutils.green_ender_flask": "Green Ender Flask",
+  "item.specutils.light_blue_ender_flask": "Light Blue Ender Flask",
+  "item.specutils.light_gray_ender_flask": "Light Gray Ender Flask",
+  "item.specutils.lime_ender_flask": "Lime Ender Flask",
+  "item.specutils.magenta_ender_flask": "Magenta Ender Flask",
+  "item.specutils.orange_ender_flask": "Orange Ender Flask",
+  "item.specutils.pink_ender_flask": "Pink Ender Flask",
+  "item.specutils.purple_ender_flask": "Purple Ender Flask",
+  "item.specutils.red_ender_flask": "Red Ender Flask",
+  "item.specutils.white_ender_flask": "White Ender Flask",
+  "item.specutils.yellow_ender_flask": "Yellow Ender Flask",
+
+  "item.specutils.ender_flask.tooltip.owner": "Owner: %s",
+  "item.specutils.ender_flask.tooltip.unknown_player": "Unknown Player",
+  "item.specutils.ender_flask.tooltip.unlinked_0": "Owner: Nobody",
+  "item.specutils.ender_flask.tooltip.unlinked_1": "Right-Click to bind.",
+
+  "item.specutils.ender_flask.tooltip": "§7Stores up to %d§7 %s",
+
+  "book.specutils.guidebook.ender_flasks": "Ender Flasks",
+  "book.specutils.guidebook.ender_flasks.page0.text": "The Ender Flask can hold as much $(l:magic/ink)Ink$() as an $(l:magic/ink_flask)Ink Flask$(), but can only hold ink of the same color as itself. When first crafted, the Ender Flask does nothing. You must use it to bind it to yourself, after which all Ender Flasks of the same color that are bound to you will hold the same ink.",
+  "book.specutils.guidebook.ender_flasks.page1.text": "This is just an example. Replace the $(l:general/pigment)Cyan Pigment$() with any two $(l:general/pigment)Pigments$() of the same color to get a matching Ender Flask.",
+
+  "book.specutils.guidebook.auxiliary_ink_supplier": "Auxiliary Ink Supplier",
+  "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allows an $(l:magic/ink)Ink$()-containing item to be connected to a machine as though it were inserted into that machine's $(l:magic/ink)Ink$() storage slot. The primary use-case for this is automatically supplying a $(l:magical_blocks/cinderhearth)Cinderhearth$() with multiple different colors of $(l:magic/ink)Ink$().",
+  "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. Use a Binding Tool to link it to its target.",
+
+  "book.specutils.guidebook.moonstone_grow_lamp.page0.text": "The Moonstone Grow Lamp allows $(l:resources/jade_vines)Jade Vines$() to be grown in places where they can't access natural moonlight. Placing Moonstone Grow Lamp directly above a $(l:resources/jade_vines)Jade Vine's$() roots and powering it with redstone will enable the vine to grow.",
+  "book.specutils.guidebook.moonstone_grow_lamp.page2.text": "Placing a block of $(l:resources/shimmerstone)Shimmerstone$() directly on top of the Moonstone Grow Lamp will overcharge it, causing the $(l:resources/jade_vines)Jade Vine$() beneath to die, as if in sunlight.",
+
+
+}

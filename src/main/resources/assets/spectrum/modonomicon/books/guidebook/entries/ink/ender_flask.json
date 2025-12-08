@@ -1,0 +1,30 @@
+{
+  "name": "book.specutils.guidebook.ender_flasks",
+  "icon": {
+    "item": "specutils:cyan_ender_flask"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "specutils:recipes/pedestal/cyan_ender_flask"
+  },
+  "category": "spectrum:ink",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.specutils.guidebook.ender_flasks",
+      "text": "book.specutils.guidebook.ender_flasks.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "text": "book.specutils.guidebook.ender_flasks.page1.text",
+      "recipe_id": "specutils:cyan_ender_flask"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "block.specutils.moonstone_grow_lamp",
+  "icon": {
+    "item": "specutils:moonstone_grow_lamp"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "specutils:recipes/pedestal/moonstone_grow_lamp"
+  },
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "block.specutils.moonstone_grow_lamp",
+      "text": "book.specutils.guidebook.moonstone_grow_lamp.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "specutils:cyan_ender_flask"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:shimmerstone_block"
+      },
+      "text": "book.specutils.guidebook.moonstone_grow_lamp.page0.text"
+    }
+  ]
+}
