@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Spectral Utilities",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "A collection of small but useful features for Spectrum",
   "authors": [
     "Ned Hunter"
   ],
@@ -18,23 +18,11 @@
 
   "environment": "*",
   "entrypoints": {
-    "fabric-datagen": [
-      {
-        "adapter": "kotlin",
-        "value": "com.oyosite.ticon.specutils.datagen.DatagenEntrypoint"
-      }
-    ],
     "main": [
-      {
-        "adapter": "kotlin",
-        "value": "com.oyosite.ticon.specutils.SpectralUtilities"
-      }
+      "com.oyosite.ticon.specutils.SpectralUtilities"
     ],
     "client": [
-      {
-        "adapter": "kotlin",
-        "value": "com.oyosite.ticon.specutils.SpectralUtilitiesClient"
-      }
+      "com.oyosite.ticon.specutils.SpectralUtilitiesClient"
     ],
     "cardinal-components": [
       {
@@ -58,10 +46,7 @@
     "fabric-api": "*",
     "minecraft": "~${minecraft_version}",
     "java": ">=21",
-    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
     "spectrum": "*"
   },
-  "suggests": {
-
-  }
+  "suggests": {}
 }
