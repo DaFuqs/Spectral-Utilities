@@ -1,10 +1,7 @@
 package com.oyosite.ticon.specutils.mixin;
 
-import com.oyosite.ticon.specutils.block.moonstone_grow_lamp.MoonstoneGrowLampBlock;
+import com.oyosite.ticon.specutils.block.MoonstoneGrowLampBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVine;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
