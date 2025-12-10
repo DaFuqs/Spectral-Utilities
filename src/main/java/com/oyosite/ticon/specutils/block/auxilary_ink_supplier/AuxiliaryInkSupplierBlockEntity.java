@@ -2,12 +2,14 @@ package com.oyosite.ticon.specutils.block.auxilary_ink_supplier;
 
 import com.oyosite.ticon.specutils.*;
 import com.oyosite.ticon.specutils.block.*;
+import com.oyosite.ticon.specutils.data_components.*;
 import com.oyosite.ticon.specutils.item.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.tags.*;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -94,7 +97,10 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 		
 		InkStorage inkStorage = inkStorageItem.getEnergyStorage(heldStack);
 		
-		BlockPos targetPos = getTargetPos(heldStack);
+		@Nullable BlockPos targetPos = heldStack.get(SpectralUtilitiesDataComponents.LINKED_POSITION);
+		if (targetPos == null) {
+			return;
+		}
 		BlockEntity targetBe = world.getBlockEntity(targetPos);
 		if (targetBe == null) {
 			return;

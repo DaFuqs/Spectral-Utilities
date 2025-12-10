@@ -5,25 +5,26 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 
 @Mixin(SpectrumClusterBlock.class)
-public abstract class CrystallarieumGrowableBlockMixin extends Block {
+public abstract class SpectrumClusterBlockMixin extends Block {
     
     @Shadow @Final
 	protected SpectrumClusterBlock.GrowthStage growthStage;
     
-    public CrystallarieumGrowableBlockMixin(Properties properties) {
+    public SpectrumClusterBlockMixin(Properties properties) {
         super(properties);
     }
     
     @Override
-    protected boolean hasAnalogOutputSignal(BlockState state) {
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
     
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    protected int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         switch (growthStage){
             case SMALL -> {return 1;}
             case LARGE -> {return 8;}

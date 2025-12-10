@@ -1,7 +1,9 @@
 package com.oyosite.ticon.specutils.item;
 
 import com.oyosite.ticon.specutils.*;
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
@@ -18,9 +20,16 @@ public class ItemRegistry {
             ENDER_FLASKS[color.ordinal()] = register(color.getName() + "_ender_flask", new EnderFlask(new Item.Properties().stacksTo(1), InkColor.ofDyeColor(color)));
         }
         
-        //ItemGroupEvents.modifyEntriesEvent(SpectrumItemGroups.ENERGY).register{}
+        ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.EQUIPMENT.getIdentifier()).register(entries -> {
+            entries.accept(BINDING_TOOL);
+        });
+        ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.ENERGY.getIdentifier()).register(entries -> {
+            for(Item i : ENDER_FLASKS) {
+                entries.accept(i);
+            }
+		});
     }
-    
+
     public static void register() {
     
     }

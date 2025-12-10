@@ -1,6 +1,7 @@
 package com.oyosite.ticon.specutils.item;
 
 import com.oyosite.ticon.specutils.block.*;
+import com.oyosite.ticon.specutils.data_components.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
@@ -20,9 +21,7 @@ public class BindingTool extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        return super.useOn(context);
-        
+    public @NotNull InteractionResult useOn(UseOnContext context) {
         BlockPos pos = context.getClickedPos();
         BlockEntity be = context.getLevel().getBlockEntity(pos);
         if(be instanceof LinkableBlockEntity linkableBlockEntity) {
@@ -30,9 +29,8 @@ public class BindingTool extends Item {
             
             @Nullable BlockPos targetPos = getTarget(usedStack);
             if(targetPos == null) return InteractionResult.FAIL;
-            if(!linkableBlockEntity.canBind(targetPos)) return InteractionResult.FAIL;
-            
-            it.targetPos = targetPos;
+            if(!linkableBlockEntity.setTargetPos(targetPos)) return InteractionResult.FAIL;
+
             return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
         }
         
@@ -42,7 +40,7 @@ public class BindingTool extends Item {
     }
     
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
         if(player.isCrouching()) {
             setTarget(stack, null);
@@ -52,7 +50,7 @@ public class BindingTool extends Item {
     }
     
     @Override
-    public void appendHoverText(net.minecraft.world.item.ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         
         BlockPos pos = getTarget(stack);
@@ -63,10 +61,15 @@ public class BindingTool extends Item {
     }
     
     private @Nullable BlockPos getTarget(net.minecraft.world.item.ItemStack stack) {
-        get() = getSubNbt("target_data")?.run{BlockPos(getInt("x"),getInt("y"),getInt("z"))}
+        return stack.get(SpectralUtilitiesDataComponents.LINKED_POSITION);
     }
     
-    private BlockPos setTarget(net.minecraft.world.item.ItemStack stack, @Nullable BlockPos pos) {
-        set(value) {value?.apply{getOrCreateSubNbt("target_data").run{putInt("x", x);putInt("y",y);putInt("z",z)}}?:removeSubNbt("target_data")}
+    private void setTarget(net.minecraft.world.item.ItemStack stack, @Nullable BlockPos pos) {
+        if(pos == null) {
+            stack.remove(SpectralUtilitiesDataComponents.LINKED_POSITION);
+        } else {
+            stack.set(SpectralUtilitiesDataComponents.LINKED_POSITION, pos);
+        }
     }
+
 }

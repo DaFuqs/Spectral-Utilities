@@ -1,15 +1,18 @@
-package com.oyosite.ticon.specutils.component
-;
+package com.oyosite.ticon.specutils.component;
+
 import com.oyosite.ticon.specutils.*;
 import net.minecraft.resources.*;
-import org.ladysnake.cca.api.v3.component.ComponentRegistry;
+import org.ladysnake.cca.api.v3.component.*;
+import org.ladysnake.cca.api.v3.scoreboard.*;
 
-public class ScoreboardComponentEntrypoint extends ScoreboardCom {
+public class ScoreboardComponentEntrypoint implements ScoreboardComponentInitializer {
 
-    public static String ENDER_FLASK = ComponentRegistry.getOrCreate(SpectralUtilities.id("ender_flask"), StaticEnderInkStorageComponent::class);
+    public static final ComponentKey<StaticEnderInkStorageComponent> ENDER_FLASK =
+            ComponentRegistry.getOrCreate(SpectralUtilities.id("ender_flask"), StaticEnderInkStorageComponent.class);
 
+    @Override
     public void registerScoreboardComponentFactories(ScoreboardComponentFactoryRegistry registry) {
-        registry.registerScoreboardComponent(ENDER_FLASK, ::StaticEnderInkStorageComponent)
-    }
+        registry.registerScoreboardComponent(ENDER_FLASK, StaticEnderInkStorageComponent::new);
 
+    }
 }

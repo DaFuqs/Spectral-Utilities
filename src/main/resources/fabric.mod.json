@@ -25,10 +25,7 @@
       "com.oyosite.ticon.specutils.SpectralUtilitiesClient"
     ],
     "cardinal-components": [
-      {
-        "adapter": "kotlin",
-        "value": "com.oyosite.ticon.specutils.component.ScoreboardComponentEntrypoint"
-      }
+      "com.oyosite.ticon.specutils.component.ScoreboardComponentEntrypoint"
     ]
   },
   "mixins": [

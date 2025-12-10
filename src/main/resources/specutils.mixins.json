@@ -4,7 +4,7 @@
   "package": "com.oyosite.ticon.specutils.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "CrystallarieumGrowableBlockMixin",
+    "SpectrumClusterBlockMixin",
     "JadeVineMixin",
     "JadeVineRootsBlockMixin"
   ],

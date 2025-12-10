@@ -2,6 +2,7 @@ package com.oyosite.ticon.specutils;
 
 import com.oyosite.ticon.specutils.block.*;
 import com.oyosite.ticon.specutils.config.*;
+import com.oyosite.ticon.specutils.data_components.*;
 import com.oyosite.ticon.specutils.item.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
@@ -21,6 +22,7 @@ public class SpectralUtilities implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
+		SpectralUtilitiesDataComponents.register();
 		ItemRegistry.register();
 		BlockRegistry.register();
 		

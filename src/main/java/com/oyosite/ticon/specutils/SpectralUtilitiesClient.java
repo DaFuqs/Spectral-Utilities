@@ -11,7 +11,5 @@ public class SpectralUtilitiesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRegistry.registerClient();
-        
-        BlockEntityRenderers.register(BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, AuxiliaryInkSupplierBlockEntityRenderer::new);
     }
 }
