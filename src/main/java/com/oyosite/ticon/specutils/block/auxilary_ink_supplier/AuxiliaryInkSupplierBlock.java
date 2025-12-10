@@ -32,7 +32,7 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
 	}
     
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return null;
     }
     
@@ -42,7 +42,7 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     }
     
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new AuxiliaryInkSupplierBlockEntity(pos, state);
     }
     
@@ -52,17 +52,17 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     }
     
     @Override
-    protected FluidState getFluidState(BlockState state) {
+    protected @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(FluidLogging.ANY_INCLUDING_NONE).getFluidState();
     }
     
     @Override
-    protected boolean isCollisionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
+    protected boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return false;
     }
     
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(level.isClientSide()) return ItemInteractionResult.SUCCESS;
         
         Optional<AuxiliaryInkSupplierBlockEntity> blockEntity = level.getBlockEntity(pos, BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE);
@@ -78,18 +78,18 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
     }
     
     @Override
-    protected int getLightBlock(BlockState state, BlockGetter level, BlockPos pos) {
+    protected int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return 0;
     }
     
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
     
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
         return createTickerHelper(type, BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, world.isClientSide ? null : AuxiliaryInkSupplierBlockEntity::serverTick);
     }
 

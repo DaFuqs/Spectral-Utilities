@@ -44,8 +44,8 @@ public class BlockRegistry {
 
     private static Block register(String name, Block block, Item.Properties properties) {
         ResourceLocation id = SpectralUtilities.id(name);
-        Registry.register(Registries.BLOCK, id, block);
-        Registry.register(Registries.ITEM, id, new BlockItem(block, properties));
+        Registry.register(BuiltInRegistries.BLOCK, id, block);
+        Registry.register(BuiltInRegistries.ITEM, id, new BlockItem(block, properties));
         return block;
     }
     

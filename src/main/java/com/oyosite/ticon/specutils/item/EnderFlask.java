@@ -88,12 +88,16 @@ public class EnderFlask extends InkFlaskItem {
         tooltip.removeLast();
     }
 
-    private @Nullable ResolvableProfile getOwner(ItemStack stack) {
+    public static @Nullable ResolvableProfile getOwner(ItemStack stack) {
         return stack.get(DataComponents.PROFILE);
     }
 
-    private void setOwner(ItemStack stack, Player player) {
-        stack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
+    private static void setOwner(ItemStack stack, Player player) {
+        setOwner(stack, new ResolvableProfile(player.getGameProfile()));
+    }
+
+    public static void setOwner(ItemStack stack, ResolvableProfile profile) {
+        stack.set(DataComponents.PROFILE, profile);
     }
 
 }

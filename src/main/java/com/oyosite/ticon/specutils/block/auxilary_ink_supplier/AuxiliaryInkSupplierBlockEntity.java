@@ -1,5 +1,6 @@
 package com.oyosite.ticon.specutils.block.auxilary_ink_supplier;
 
+import com.mojang.authlib.properties.*;
 import com.oyosite.ticon.specutils.*;
 import com.oyosite.ticon.specutils.block.*;
 import com.oyosite.ticon.specutils.data_components.*;
@@ -8,13 +9,14 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.energy.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, LinkableBlockEntity {
 	
@@ -38,12 +41,16 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 	
 	@Override
 	public BlockPos getTargetPos() {
-		return null;
+		return this.targetPos;
 	}
-	
+
 	@Override
-	public boolean canBind(BlockPos target) {
-		return this.getBlockPos().distSqr(target) <= 9;
+	public boolean setTargetPos(BlockPos target) {
+		if(this.getBlockPos().distSqr(target) > 9) {
+			return false;
+		}
+		this.targetPos = target;
+		return true;
 	}
 	
 	@Override
@@ -126,19 +133,28 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 		
 		if (canProvide) {
 			var transferredAmount = 0L;
-			var colorPredicate:(InkColor) -> Boolean = {true}
-			if (targetBe is ColorPickerBlockEntity)colorPredicate = {targetBe.selectedColor ?.equals(it) ?:true}
-			for (inkColor in InkColors.all().filter(colorPredicate))
-				transferredAmount += InkStorage.transferInk(targetStorage, inkStorage, inkColor)
-			if (transferredAmount > 0) storageItem.setEnergyStorage(heldStack, inkStorage)
+			Predicate<InkColor> colorPredicate = inkColor -> true;
+			if (targetBe instanceof ColorPickerBlockEntity colorPicker) {
+				colorPredicate = inkColor -> {
+					Optional<Holder<InkColor>> selectedColor = colorPicker.getSelectedColor();
+					return selectedColor.isEmpty() || selectedColor.get().value().equals(inkColor);
+				};
+			}
+			for (InkColor inkColor : InkColors.all()) {
+				if (colorPredicate.test(inkColor)) {
+					transferredAmount += InkStorage.transferInk(targetStorage, inkStorage, inkColor);
+				}
+			}
+			if (transferredAmount > 0) {
+				inkStorageItem.setEnergyStorage(heldStack, inkStorage);
+			}
 			
 			inkStorageBlockEntity.setInkDirty();
 			targetBe.setChanged();
 		}
 		
-		if (inkStorageItem instanceof EnderFlask enderFlask && enderFlask.getOwnerUUID() != null){
-			heldStack.owner = ownerUUID;
-			heldStack.ownerName = ownerName ?:Text.empty();
+		if (inkStorageItem instanceof EnderFlask && EnderFlask.getOwner(heldStack) != null){
+			EnderFlask.setOwner(heldStack, new ResolvableProfile(Optional.ofNullable(blockEntity.ownerName), Optional.ofNullable(blockEntity.ownerUUID), new PropertyMap()));
 		}
 	}
 }

@@ -2,15 +2,21 @@ package com.oyosite.ticon.specutils.block.auxilary_ink_supplier;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
+import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
-public class AuxiliaryInkSupplierBlockEntityRenderer implements BlockEntityRenderer<AuxiliaryInkSupplierBlockEntity> {
-    
+@Environment(EnvType.CLIENT)
+public class AuxiliaryInkSupplierBlockEntityRenderer<T extends AuxiliaryInkSupplierBlockEntity> implements BlockEntityRenderer<T> {
+
+    public AuxiliaryInkSupplierBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+    }
+
     @Override
-    public void render(AuxiliaryInkSupplierBlockEntity entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+    public void render(T entity, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
         Minecraft client = Minecraft.getInstance();
         ItemStack inkStorageStack = entity.getItem(0);
         if (inkStorageStack.isEmpty()) {
