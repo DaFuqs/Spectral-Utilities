@@ -39,5 +39,5 @@
   "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. Use a Binding Tool to link it to its target.",
 
   "book.specutils.guidebook.moonstone_grow_lamp.page0.text": "The Moonstone Grow Lamp allows $(l:resources/jade_vines)Jade Vines$() to be grown in places where they can't access natural moonlight. Placing Moonstone Grow Lamp directly above a $(l:resources/jade_vines)Jade Vine's$() roots and powering it with redstone will enable the vine to grow.",
-  "book.specutils.guidebook.moonstone_grow_lamp.page2.text": "Placing a block of $(l:resources/shimmerstone)Shimmerstone$() directly on top of the Moonstone Grow Lamp will overcharge it, causing the $(l:resources/jade_vines)Jade Vine$() beneath to die, as if in sunlight.",
+  "book.specutils.guidebook.moonstone_grow_lamp.page2.text": "Placing a block of $(l:resources/shimmerstone)Shimmerstone$() directly on top of the Moonstone Grow Lamp will overcharge it, causing the $(l:resources/jade_vines)Jade Vine$() beneath to die, as if in sunlight."
 }

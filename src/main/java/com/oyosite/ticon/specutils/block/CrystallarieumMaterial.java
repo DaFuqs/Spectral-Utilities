@@ -2,7 +2,6 @@ package com.oyosite.ticon.specutils.block;
 
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -120,39 +119,37 @@ public class CrystallarieumMaterial {
 		return builder.build();
 	}
 
-	public static void register(ResourceLocation id, CrystallarieumMaterial crystallarieumMaterial) {
-		CrystallarieumMaterial mat = crystallarieumMaterial;
+	public static void register(ResourceLocation id, CrystallarieumMaterial material) {
 		String matName = id.getPath();
 
-		if (mat.registerBlocks) {
-			List<AbstractMap.SimpleEntry<String, Block>> blocks = List.of(
-					new AbstractMap.SimpleEntry<>("small_" + matName + "_bud", mat.smallBud),
-					new AbstractMap.SimpleEntry<>("large_" + matName + "_bud", mat.largeBud),
-					new AbstractMap.SimpleEntry<>(matName + "_cluster", mat.cluster)
+		if (material.registerBlocks) {
+			Map<String, Block> blocks = Map.of(
+					"small_" + matName + "_bud", material.smallBud,
+					"large_" + matName + "_bud", material.largeBud,
+					matName + "_cluster", material.cluster
 			);
 
-			for (var entry : blocks) {
+			for (var entry : blocks.entrySet()) {
 				ResourceLocation identifier = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), entry.getKey());
 				Registry.register(BuiltInRegistries.BLOCK, identifier, entry.getValue());
 				Registry.register(BuiltInRegistries.ITEM, identifier, new BlockItem(entry.getValue(), SpectrumItems.IS.of()));
 			}
 		}
 
-		if (mat.registerPureItem && mat.pureItem != null) {
+		if (material.registerPureItem && material.pureItem != null) {
 			ResourceLocation identifier = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "pure_" + matName);
-			Registry.register(BuiltInRegistries.ITEM, identifier, mat.pureItem);
+			Registry.register(BuiltInRegistries.ITEM, identifier, material.pureItem);
 		}
 	}
 
 	public static BlockBehaviour.Properties crystallarieumGrowableBlockSettings(Block baseBlock) {
-		return FabricBlockSettings.create()
-				.mapColor(baseBlock.defaultMapColor())
-				.sounds(baseBlock.defaultBlockState().getSoundType())
-				.strength(1.5f)
-				.solid()
-				.pistonBehavior(PushReaction.DESTROY)
-				.requiresTool()
-				.nonOpaque();
+		return BlockBehaviour.Properties
+				.ofFullCopy(baseBlock)
+				.strength(1.5F)
+				.noOcclusion()
+				.forceSolidOn()
+				.requiresCorrectToolForDrops()
+				.pushReaction(PushReaction.DESTROY);
 	}
 }
 
