@@ -1,7 +1,12 @@
 {
   "type": "spectrum:pedestal",
-  "black": 4,
-  "cyan": 2,
+  "colors": {
+    "spectrum:black": 4,
+    "spectrum:cyan": 2,
+    "spectrum:magenta": 2,
+    "spectrum:white": 4,
+    "spectrum:yellow": 2
+  },
   "experience": 4.0,
   "key": {
     "B": {
@@ -14,7 +19,6 @@
       "item": "spectrum:purple_pigment"
     }
   },
-  "magenta": 2,
   "pattern": [
     "BMB",
     "PBP",
@@ -26,7 +30,5 @@
     "item": "specutils:basalt_auxiliary_ink_supplier"
   },
   "tier": "complex",
-  "time": 1200,
-  "white": 4,
-  "yellow": 2
+  "time": 1200
 }

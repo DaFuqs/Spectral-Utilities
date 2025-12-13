@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates/noxwood_lamp_alt",
-  "textures": {
-    "all": "specutils:block/noxwood_deco/chestnut_ivory_noxwood_lamp"
-  }
-}

@@ -1,7 +1,12 @@
 {
   "type": "spectrum:pedestal",
-  "black": 0,
-  "cyan": 1,
+  "colors": {
+    "spectrum:black": 0,
+    "spectrum:cyan": 1,
+    "spectrum:magenta": 2,
+    "spectrum:white": 4,
+    "spectrum:yellow": 4
+  },
   "experience": 2.0,
   "key": {
     "B": {
@@ -14,7 +19,6 @@
       "item": "spectrum:moonstone_basalt_lamp"
     }
   },
-  "magenta": 2,
   "pattern": [
     "BLB",
     "LCL",
@@ -26,7 +30,5 @@
     "item": "specutils:moonstone_grow_lamp"
   },
   "tier": "complex",
-  "time": 600,
-  "white": 4,
-  "yellow": 4
+  "time": 600
 }

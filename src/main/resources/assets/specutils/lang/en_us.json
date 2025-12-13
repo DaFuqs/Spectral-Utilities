@@ -2,9 +2,10 @@
   "block.specutils.basalt_auxiliary_ink_supplier": "Basalt Auxiliary Ink Supplier",
   "block.specutils.calcite_auxiliary_ink_supplier": "Calcite Auxiliary Ink Supplier",
   "block.specutils.moonstone_grow_lamp": "Moonstone Grow Lamp",
+
   "item.specutils.binding_tool": "Binding Tool",
-  "item.specutils.binding_tool.tooltip.linked_to": "Bound to x=%s, y=%s, z=%s.",
-  "item.specutils.binding_tool.tooltip.unlinked": "Not Bound.",
+  "item.specutils.binding_tool.tooltip.linked_to": "Bound to x=%s, y=%s, z=%s",
+  "item.specutils.binding_tool.tooltip.unlinked": "Not Bound",
 
   "item.specutils.black_ender_flask": "Black Ender Flask",
   "item.specutils.blue_ender_flask": "Blue Ender Flask",
@@ -23,10 +24,28 @@
   "item.specutils.white_ender_flask": "White Ender Flask",
   "item.specutils.yellow_ender_flask": "Yellow Ender Flask",
 
+  "block.specutils.chestnut_ebony_noxwood_lantern": "Chestnut-Ebony Noxwood Lantern",
+  "block.specutils.chestnut_ivory_noxwood_lantern": "Chestnut-Ivory Noxwood Lantern",
+  "block.specutils.chestnut_slate_noxwood_lantern": "Chestnut-Slate Noxwood Lantern",
+  "block.specutils.ebony_chestnut_noxwood_lantern": "Ebony-Chestnut Noxwood Lantern",
+  "block.specutils.ebony_ivory_noxwood_lantern": "Ebony-Ivory Noxwood Lantern",
+  "block.specutils.ebony_slate_noxwood_lantern": "Ebony-Slate Noxwood Lantern",
+  "block.specutils.ivory_chestnut_noxwood_lantern": "Ivory-Chestnut Noxwood Lantern",
+  "block.specutils.ivory_ebony_noxwood_lantern": "Ivory-Ebony Noxwood Lantern",
+  "block.specutils.ivory_slate_noxwood_lantern": "Ivory-Slate Noxwood Lantern",
+  "block.specutils.slate_chestnut_noxwood_lantern": "Slate-Chestnut Noxwood Lantern",
+  "block.specutils.slate_ebony_noxwood_lantern": "Slate-Ebony Noxwood Lantern",
+  "block.specutils.slate_ivory_noxwood_lantern": "Slate-Ivory Noxwood Lantern",
+
+  "block.specutils.small_dragonbone_bud": "Small Dragonbone Bud",
+  "block.specutils.large_dragonbone_bud": "Large Dragonbone Cluster",
+  "block.specutils.dragonbone_cluster": "Dragonbone Cluster",
+  "item.specutils.pure_dragonbone": "Pure Dragonbone",
+
   "item.specutils.ender_flask.tooltip.owner": "Owner: %s",
   "item.specutils.ender_flask.tooltip.unknown_player": "Unknown Player",
   "item.specutils.ender_flask.tooltip.unlinked_0": "Owner: Nobody",
-  "item.specutils.ender_flask.tooltip.unlinked_1": "Right-Click to bind.",
+  "item.specutils.ender_flask.tooltip.unlinked_1": "Right-Click to bind",
 
   "item.specutils.ender_flask.tooltip": "§7Stores up to %d§7 %s",
 

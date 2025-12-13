@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "tall=false,diagonal=false,hanging=false": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern"
+    },
+    "tall=false,diagonal=false,hanging=true": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_hanging"
+    },
+    "tall=false,diagonal=true,hanging=false": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_diagonal"
+    },
+    "tall=false,diagonal=true,hanging=true": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_hanging_diagonal"
+    },
+    "tall=true,diagonal=false,hanging=false": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_tall"
+    },
+    "tall=true,diagonal=false,hanging=true": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_hanging_tall"
+    },
+    "tall=true,diagonal=true,hanging=false": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_diagonal_tall"
+    },
+    "tall=true,diagonal=true,hanging=true": {
+      "model": "specutils:block/noxwood_deco/slate_ivory_noxwood_lantern_hanging_diagonal_tall"
+    }
+  }
+}

@@ -1,7 +1,12 @@
 {
   "type": "spectrum:pedestal",
-  "black": 16,
-  "cyan": 8,
+  "colors": {
+    "spectrum:black": 16,
+    "spectrum:cyan": 8,
+    "spectrum:magenta": 2,
+    "spectrum:white": 4,
+    "spectrum:yellow": 8
+  },
   "experience": 8.0,
   "key": {
     "E": {
@@ -20,7 +25,6 @@
       "item": "minecraft:ender_eye"
     }
   },
-  "magenta": 2,
   "pattern": [
     "OYO",
     "PFP",
@@ -32,7 +36,5 @@
     "item": "specutils:gray_ender_flask"
   },
   "tier": "complex",
-  "time": 1200,
-  "white": 4,
-  "yellow": 8
+  "time": 1200
 }
