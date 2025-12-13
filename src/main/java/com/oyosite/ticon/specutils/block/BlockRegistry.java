@@ -22,9 +22,7 @@ public class BlockRegistry {
 	public static Block MOONSTONE_GROW_LAMP = register("moonstone_grow_lamp", new com.oyosite.ticon.specutils.block.MoonstoneGrowLampBlock(BlockBehaviour.Properties.of().strength(0.6f)), new Item.Properties());
 
 	public static CrystallarieumMaterial DRAGONBONE = new CrystallarieumMaterial.Builder()
-			.input(SpectrumItems.DRAGONBONE_CHUNK)
 			.createBuds(SpectrumBlocks.CRACKED_DRAGONBONE)
-			.createPureItem(new Item.Properties())
 			.build();
 
 	public static class BlockEntities {

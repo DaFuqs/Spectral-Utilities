@@ -7,8 +7,11 @@ import com.oyosite.ticon.specutils.item.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
+import net.minecraft.client.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.*;
 import org.slf4j.*;
 
 public class SpectralUtilities implements ModInitializer {
@@ -27,12 +30,27 @@ public class SpectralUtilities implements ModInitializer {
 		BlockRegistry.register();
 		
 		AutoConfig.register(CommonConfig.class, GsonConfigSerializer::new);
-		
-		//The second event may be redundant, but I want to be safe.
-		ServerLifecycleEvents.SERVER_STARTING.register(minecraftServer -> EnderFlask.scoreboard = minecraftServer.getScoreboard());
+
+		ServerLifecycleEvents.SERVER_STARTED.register(minecraftServer -> {
+			EnderFlask.scoreboard = minecraftServer.getScoreboard();
+			EnderFlask.level = minecraftServer.overworld();
+		});
+		ServerLifecycleEvents.SERVER_STOPPING.register(minecraftServer -> {
+			EnderFlask.scoreboard = null;
+			EnderFlask.level = null;
+		});
+		ClientLifecycleEvents.CLIENT_STARTED.register(new ClientLifecycleEvents.ClientStarted() {
+			@Override
+			public void onClientStarted(Minecraft minecraft) {
+				EnderFlask.level = minecraft.level;
+			}
+		});
+		ClientLifecycleEvents.CLIENT_STOPPING.register(new ClientLifecycleEvents.ClientStopping() {
+			@Override
+			public void onClientStopping(Minecraft minecraft) {
+				EnderFlask.level = null;
+			}
+		});
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((minecraftServer, closeableResourceManager, b) -> EnderFlask.scoreboard = minecraftServer.getScoreboard());
-		
-		// TODO: Add items to item groups
-		// ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_ENERGY).register(...)
 	}
 }

@@ -11,6 +11,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.boss.enderdragon.phases.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
@@ -18,10 +19,13 @@ import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class EnderFlask extends InkFlaskItem {
     
     public static final SingleInkStorage DUMMY_ENERGY_STORAGE = new SingleInkStorage(0);
+
+    public static Level level;
     public static ServerScoreboard scoreboard;
     
     protected InkColor inkColor;
@@ -33,21 +37,23 @@ public class EnderFlask extends InkFlaskItem {
     
     @Override
     public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
-        Optional<StaticEnderInkStorageComponent> storage = ScoreboardComponentEntrypoint.ENDER_FLASK.maybeGet(getOwner(itemStack));
-        if(storage.isEmpty()) {
+        @Nullable ResolvableProfile owner = getOwner(itemStack);
+        if(level == null || owner == null || owner.id().isEmpty()) {
             return DUMMY_ENERGY_STORAGE;
         }
-        return storage.get().get(getOwner(itemStack).id().get(), inkColor.getDyeColor().get());
+
+        StaticEnderInkStorageComponent storage = ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard);
+        return storage.get(level, getOwner(itemStack).id().get(), inkColor);
     }
     
     @Override
     public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
         @Nullable ResolvableProfile owner = getOwner(itemStack);
-        if(owner == null) {
+        if(owner == null || owner.id().isEmpty()) {
             return;
         }
         ColorLockedInkStorage s = (ColorLockedInkStorage) storage;
-        ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard).set(owner.id().get(), inkColor.getDyeColor().get(), s);
+        ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard).set(level, owner.id().get(), inkColor, s);
     }
     
     @Override
@@ -77,7 +83,7 @@ public class EnderFlask extends InkFlaskItem {
             tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.unlinked_1"));
             return;
         } else {
-            tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.owner", profile.name()));
+            tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.owner", profile.name().orElse("???")));
         }
         
         if(!(getEnergyStorage(stack) instanceof ColorLockedInkStorage)) {

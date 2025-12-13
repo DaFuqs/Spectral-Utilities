@@ -10,33 +10,34 @@ import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.scores.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class StaticEnderInkStorageComponent implements AutoSyncedComponent {
 	
 	public static final long CAPACITY = 409600L;
-	private static final Map<UUID, SingleInkStorage[]> PLAYER_ENDER_INK_STORAGE = new HashMap<>();
+	private static final Map<UUID, Map<InkColor, SingleInkStorage>> PLAYER_ENDER_INK_STORAGE = new HashMap<>();
 	
 	public StaticEnderInkStorageComponent(Scoreboard scoreboard, MinecraftServer server) {
 	
 	}
 	
-	public SingleInkStorage get(UUID player, DyeColor color) {
-		return PLAYER_ENDER_INK_STORAGE.putIfAbsent(player, createStorages())[color.ordinal()];
+	public SingleInkStorage get(Level level, UUID player, InkColor color) {
+		return PLAYER_ENDER_INK_STORAGE.computeIfAbsent(player, uuid -> createStorages(level.registryAccess())).get(color);
 	}
 	
-	public void set(UUID player, DyeColor color, ColorLockedInkStorage storage) {
-		PLAYER_ENDER_INK_STORAGE.putIfAbsent(player, createStorages())[color.ordinal()] = storage;
+	public void set(Level level, UUID player, InkColor color, ColorLockedInkStorage storage) {
+		PLAYER_ENDER_INK_STORAGE.computeIfAbsent(player, uuid -> createStorages(level.registryAccess())).put(color, storage);
 	}
 	
-	protected SingleInkStorage[] createStorages() {
-		ColorLockedInkStorage[] storages = new ColorLockedInkStorage[DyeColor.values().length];
-		for (DyeColor dyeColor : SpectrumColorHelper.VANILLA_DYE_COLORS) {
-			storages[dyeColor.ordinal()] = new ColorLockedInkStorage(CAPACITY, InkColor.ofDyeColor(dyeColor), 0);
-		}
+	protected Map<InkColor, SingleInkStorage> createStorages(HolderLookup.Provider provider) {
+		HolderLookup.RegistryLookup<InkColor> inkRegistry = provider.lookupOrThrow(SpectrumRegistryKeys.INK_COLOR);
+		Map<InkColor, SingleInkStorage> storages = new LinkedHashMap<>();
+		inkRegistry.listElements().forEach(inkColor -> storages.put(inkColor.value(), new ColorLockedInkStorage(CAPACITY, inkColor.value(), 0)));
 		return storages;
 	}
 	
@@ -45,15 +46,14 @@ public class StaticEnderInkStorageComponent implements AutoSyncedComponent {
 		compoundTag.getAllKeys().forEach(key -> {
 			UUID player = UUID.fromString(key);
 			CompoundTag values = compoundTag.getCompound(key);
-			SingleInkStorage[] storages = createStorages();
-			
+			Map<InkColor, SingleInkStorage> storages = createStorages(provider);
+
 			values.getAllKeys().forEach(s -> {
 				long value = values.getLong(s);
 				InkColor inkColor = SpectrumRegistries.INK_COLOR.get(ResourceLocation.tryParse(s));
-				
-				storages[inkColor.getDyeColor().get().ordinal()].setEnergy(Map.of(inkColor, value), value);
+				storages.get(inkColor).setEnergy(Map.of(inkColor, value), value);
 			});
-			
+
 			PLAYER_ENDER_INK_STORAGE.put(player, storages);
 		});
 	}
@@ -62,7 +62,7 @@ public class StaticEnderInkStorageComponent implements AutoSyncedComponent {
 	public void writeToNbt(CompoundTag tag, HolderLookup.Provider provider) {
 		PLAYER_ENDER_INK_STORAGE.forEach((uuid, singleInkStorages) -> {
 			CompoundTag colors = new CompoundTag();
-			for (SingleInkStorage singleInkStorage : singleInkStorages) {
+			for (SingleInkStorage singleInkStorage : singleInkStorages.values()) {
 				InkColor storedColor = singleInkStorage.getStoredColor();
 				long storedEnergy = singleInkStorage.getEnergy(storedColor);
 				if (storedEnergy > 0) {

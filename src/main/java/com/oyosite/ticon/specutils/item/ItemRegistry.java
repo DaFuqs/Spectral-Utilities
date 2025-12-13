@@ -1,12 +1,14 @@
 package com.oyosite.ticon.specutils.item;
 
 import com.oyosite.ticon.specutils.*;
+import com.oyosite.ticon.specutils.block.*;
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 @SuppressWarnings("Unused")
 public class ItemRegistry {
@@ -24,10 +26,23 @@ public class ItemRegistry {
             entries.accept(BINDING_TOOL);
         });
         ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.ENERGY.getIdentifier()).register(entries -> {
+            entries.accept(BlockRegistry.BASALT_AUXILIARY_INK_SUPPLIER);
+            entries.accept(BlockRegistry.CALCITE_AUXILIARY_INK_SUPPLIER);
             for(Item i : ENDER_FLASKS) {
                 entries.accept(i);
             }
 		});
+        ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.DECORATION.getIdentifier()).register(entries -> {
+            for(Block i : NoxwoodDeco.ALL_DECO.values()) {
+                entries.accept(i);
+            }
+        });
+        ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.FUNCTIONAL.getIdentifier()).register(entries -> {
+            entries.accept(BlockRegistry.MOONSTONE_GROW_LAMP);
+        });
+        ItemSubGroupEvents.modifyEntriesEvent(SpectrumItemGroups.PURE_RESOURCES.getIdentifier()).register(entries -> {
+            BlockRegistry.DRAGONBONE.addEntries(entries);
+        });
     }
 
     public static void register() {
