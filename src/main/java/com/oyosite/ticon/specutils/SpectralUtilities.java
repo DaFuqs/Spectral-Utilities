@@ -9,26 +9,24 @@ import me.shedaniel.autoconfig.serializer.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
-import net.minecraft.client.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.*;
 import org.slf4j.*;
 
 public class SpectralUtilities implements ModInitializer {
-	
+
 	public static final String MOD_ID = "specutils";
 	public static final Logger LOGGER = LoggerFactory.getLogger("spectral-utilities");
-	
+
 	public static ResourceLocation id(String name) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
 	}
-	
+
 	@Override
 	public void onInitialize() {
 		SpectralUtilitiesDataComponents.register();
 		ItemRegistry.register();
 		BlockRegistry.register();
-		
+
 		AutoConfig.register(CommonConfig.class, GsonConfigSerializer::new);
 
 		ServerLifecycleEvents.SERVER_STARTED.register(minecraftServer -> {
@@ -39,18 +37,8 @@ public class SpectralUtilities implements ModInitializer {
 			EnderFlask.scoreboard = null;
 			EnderFlask.level = null;
 		});
-		ClientLifecycleEvents.CLIENT_STARTED.register(new ClientLifecycleEvents.ClientStarted() {
-			@Override
-			public void onClientStarted(Minecraft minecraft) {
-				EnderFlask.level = minecraft.level;
-			}
-		});
-		ClientLifecycleEvents.CLIENT_STOPPING.register(new ClientLifecycleEvents.ClientStopping() {
-			@Override
-			public void onClientStopping(Minecraft minecraft) {
-				EnderFlask.level = null;
-			}
-		});
+		ClientLifecycleEvents.CLIENT_STARTED.register(minecraft -> EnderFlask.level = minecraft.level);
+		ClientLifecycleEvents.CLIENT_STOPPING.register(minecraft -> EnderFlask.level = null);
 		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((minecraftServer, closeableResourceManager, b) -> EnderFlask.scoreboard = minecraftServer.getScoreboard());
 	}
 }

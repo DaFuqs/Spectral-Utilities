@@ -16,7 +16,7 @@ public class SpectralUtilitiesDataComponents {
 		return Registry.register(
 				BuiltInRegistries.DATA_COMPONENT_TYPE,
 				SpectralUtilities.id(name),
-				((DataComponentType.Builder)builder.apply(DataComponentType.builder())).build()
+				((DataComponentType.Builder) builder.apply(DataComponentType.builder())).build()
 		);
 	}
 

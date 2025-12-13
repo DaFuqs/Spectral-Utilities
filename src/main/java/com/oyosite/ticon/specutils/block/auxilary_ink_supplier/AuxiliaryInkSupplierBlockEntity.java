@@ -27,18 +27,18 @@ import java.util.*;
 import java.util.function.*;
 
 public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, LinkableBlockEntity {
-	
+
 	public static final TagKey<Block> INK_RECEIVERS = TagKey.create(Registries.BLOCK, SpectralUtilities.id("ink_receivers"));
 	public static final TagKey<Block> INK_PROVIDERS = TagKey.create(Registries.BLOCK, SpectralUtilities.id("ink_providers"));
-	
+
 	private UUID ownerUUID = null;
 	private String ownerName = null;
 	private BlockPos targetPos = null;
-	
+
 	public AuxiliaryInkSupplierBlockEntity(BlockPos pos, BlockState state) {
 		super(BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, pos, state, 1);
 	}
-	
+
 	@Override
 	public BlockPos getTargetPos() {
 		return this.targetPos;
@@ -46,29 +46,29 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 
 	@Override
 	public boolean setTargetPos(BlockPos target) {
-		if(this.getBlockPos().distSqr(target) > 9) {
+		if (this.getBlockPos().distSqr(target) > 9) {
 			return false;
 		}
 		this.targetPos = target;
 		return true;
 	}
-	
+
 	@Override
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
-	
+
 	@Override
 	public void setOwner(Player player) {
 		this.ownerUUID = player.getUUID();
 		this.ownerName = player.getDisplayName().getString();
 		this.setChanged();
 	}
-	
+
 	@Override
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
-		
+
 		this.ownerUUID = PlayerOwned.readOwnerUUID(tag);
 		if (tag.contains("ownerName", Tag.TAG_STRING)) {
 			ownerName = tag.getString("ownerName");
@@ -80,11 +80,11 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 			targetPos = null;
 		}
 	}
-	
+
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
-		
+
 		PlayerOwned.writeOwnerUUID(tag, this.ownerUUID);
 		PlayerOwned.writeOwnerName(tag, this.ownerName);
 		if (this.targetPos != null) {
@@ -95,15 +95,15 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 			tag.put("pos", p);
 		}
 	}
-	
+
 	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, AuxiliaryInkSupplierBlockEntity blockEntity) {
 		ItemStack heldStack = blockEntity.getItem(0);
 		if (!(heldStack.getItem() instanceof InkStorageItem<?> inkStorageItem)) {
 			return;
 		}
-		
+
 		InkStorage inkStorage = inkStorageItem.getEnergyStorage(heldStack);
-		
+
 		@Nullable BlockPos targetPos = heldStack.get(SpectralUtilitiesDataComponents.LINKED_POSITION);
 		if (targetPos == null) {
 			return;
@@ -116,21 +116,21 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 			return;
 		}
 		InkStorage targetStorage = inkStorageBlockEntity.getEnergyStorage();
-		
+
 		BlockState targetState = world.getBlockState(targetPos);
 		boolean canReceive = targetState.is(INK_RECEIVERS);
 		boolean canProvide = targetState.is(INK_PROVIDERS);
-		
+
 		if (canReceive && inkStorageItem.getDrainability().canDrain(false)) {
 			long transferredAmount = InkStorage.transferInk(inkStorage, targetStorage);
 			if (transferredAmount > 0L) {
 				inkStorageItem.setEnergyStorage(heldStack, inkStorage);
 			}
-			
+
 			inkStorageBlockEntity.setInkDirty();
 			targetBe.setChanged();
 		}
-		
+
 		if (canProvide) {
 			var transferredAmount = 0L;
 			Predicate<InkColor> colorPredicate = inkColor -> true;
@@ -148,12 +148,12 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 			if (transferredAmount > 0) {
 				inkStorageItem.setEnergyStorage(heldStack, inkStorage);
 			}
-			
+
 			inkStorageBlockEntity.setInkDirty();
 			targetBe.setChanged();
 		}
-		
-		if (inkStorageItem instanceof EnderFlask && EnderFlask.getOwner(heldStack) != null){
+
+		if (inkStorageItem instanceof EnderFlask && EnderFlask.getOwner(heldStack) != null) {
 			EnderFlask.setOwner(heldStack, new ResolvableProfile(Optional.ofNullable(blockEntity.ownerName), Optional.ofNullable(blockEntity.ownerUUID), new PropertyMap()));
 		}
 	}

@@ -11,7 +11,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.boss.enderdragon.phases.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
@@ -19,91 +18,90 @@ import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class EnderFlask extends InkFlaskItem {
-    
-    public static final SingleInkStorage DUMMY_ENERGY_STORAGE = new SingleInkStorage(0);
 
-    public static Level level;
-    public static ServerScoreboard scoreboard;
-    
-    protected InkColor inkColor;
-    
-    public EnderFlask(Properties settings, InkColor inkColor) {
-        super(settings, StaticEnderInkStorageComponent.CAPACITY);
-        this.inkColor = inkColor;
-    }
-    
-    @Override
-    public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
-        @Nullable ResolvableProfile owner = getOwner(itemStack);
-        if(level == null || owner == null || owner.id().isEmpty()) {
-            return DUMMY_ENERGY_STORAGE;
-        }
+	public static final SingleInkStorage DUMMY_ENERGY_STORAGE = new SingleInkStorage(0);
 
-        StaticEnderInkStorageComponent storage = ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard);
-        return storage.get(level, getOwner(itemStack).id().get(), inkColor);
-    }
-    
-    @Override
-    public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
-        @Nullable ResolvableProfile owner = getOwner(itemStack);
-        if(owner == null || owner.id().isEmpty()) {
-            return;
-        }
-        ColorLockedInkStorage s = (ColorLockedInkStorage) storage;
-        ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard).set(level, owner.id().get(), inkColor, s);
-    }
-    
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        ItemStack stack = player.getItemInHand(usedHand);
-        setOwner(stack, player);
-        
-        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
-    }
-    
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        super.inventoryTick(stack, level, entity, slotId, isSelected);
-        
-        if(scoreboard != null && entity instanceof Player player) {
-            player.getScoreboard();
-        }
-    }
-    
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        super.appendHoverText(stack, context, tooltip, type);
+	public static Level level;
+	public static ServerScoreboard scoreboard;
 
-        @Nullable ResolvableProfile profile = getOwner(stack);
-        if(profile == null){
-            tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.unlinked_0"));
-            tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.unlinked_1"));
-            return;
-        } else {
-            tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.owner", profile.name().orElse("???")));
-        }
-        
-        if(!(getEnergyStorage(stack) instanceof ColorLockedInkStorage)) {
-            return;
-        }
-        
-        super.appendHoverText(stack, context, tooltip, type);
-        tooltip.removeLast();
-    }
+	protected InkColor inkColor;
 
-    public static @Nullable ResolvableProfile getOwner(ItemStack stack) {
-        return stack.get(DataComponents.PROFILE);
-    }
+	public EnderFlask(Properties settings, InkColor inkColor) {
+		super(settings, StaticEnderInkStorageComponent.CAPACITY);
+		this.inkColor = inkColor;
+	}
 
-    private static void setOwner(ItemStack stack, Player player) {
-        setOwner(stack, new ResolvableProfile(player.getGameProfile()));
-    }
+	@Override
+	public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
+		@Nullable ResolvableProfile owner = getOwner(itemStack);
+		if (level == null || owner == null || owner.id().isEmpty()) {
+			return DUMMY_ENERGY_STORAGE;
+		}
 
-    public static void setOwner(ItemStack stack, ResolvableProfile profile) {
-        stack.set(DataComponents.PROFILE, profile);
-    }
+		StaticEnderInkStorageComponent storage = ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard);
+		return storage.get(level, getOwner(itemStack).id().get(), inkColor);
+	}
+
+	@Override
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
+		@Nullable ResolvableProfile owner = getOwner(itemStack);
+		if (owner == null || owner.id().isEmpty()) {
+			return;
+		}
+		ColorLockedInkStorage s = (ColorLockedInkStorage) storage;
+		ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard).set(level, owner.id().get(), inkColor, s);
+	}
+
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+		ItemStack stack = player.getItemInHand(usedHand);
+		setOwner(stack, player);
+
+		return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+	}
+
+	@Override
+	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+		super.inventoryTick(stack, level, entity, slotId, isSelected);
+
+		if (scoreboard != null && entity instanceof Player player) {
+			player.getScoreboard();
+		}
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+
+		@Nullable ResolvableProfile profile = getOwner(stack);
+		if (profile == null) {
+			tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.unlinked_0"));
+			tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.unlinked_1"));
+			return;
+		} else {
+			tooltip.add(Component.translatable("item.specutils.ender_flask.tooltip.owner", profile.name().orElse("???")));
+		}
+
+		if (!(getEnergyStorage(stack) instanceof ColorLockedInkStorage)) {
+			return;
+		}
+
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.removeLast();
+	}
+
+	public static @Nullable ResolvableProfile getOwner(ItemStack stack) {
+		return stack.get(DataComponents.PROFILE);
+	}
+
+	private static void setOwner(ItemStack stack, Player player) {
+		setOwner(stack, new ResolvableProfile(player.getGameProfile()));
+	}
+
+	public static void setOwner(ItemStack stack, ResolvableProfile profile) {
+		stack.set(DataComponents.PROFILE, profile);
+	}
 
 }
