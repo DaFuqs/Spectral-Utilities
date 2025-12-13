@@ -4,9 +4,10 @@
   "package": "com.oyosite.ticon.specutils.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "SpectrumClusterBlockMixin",
     "JadeVineMixin",
-    "JadeVineRootsBlockMixin"
+    "JadeVineRootsBlockMixin",
+    "PaintbrushItemMixin",
+    "SpectrumClusterBlockMixin"
   ],
   "client": [
   ],

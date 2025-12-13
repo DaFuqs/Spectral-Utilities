@@ -3,9 +3,7 @@
   "block.specutils.calcite_auxiliary_ink_supplier": "Calcite Auxiliary Ink Supplier",
   "block.specutils.moonstone_grow_lamp": "Moonstone Grow Lamp",
 
-  "item.specutils.binding_tool": "Binding Tool",
-  "item.specutils.binding_tool.tooltip.linked_to": "Bound to x=%s, y=%s, z=%s",
-  "item.specutils.binding_tool.tooltip.unlinked": "Not Bound",
+  "item.specutils.binding_tooltip.linked_to": "Bound to x=%s, y=%s, z=%s",
 
   "item.specutils.black_ender_flask": "Black Ender Flask",
   "item.specutils.blue_ender_flask": "Blue Ender Flask",
@@ -54,7 +52,7 @@
   "book.specutils.guidebook.ender_flasks.page1.text": "This is just an example. Replace the $(l:general/pigment)Cyan Pigment$() with any two $(l:general/pigment)Pigments$() of the same color to get a matching Ender Flask.",
 
   "book.specutils.guidebook.auxiliary_ink_supplier": "Auxiliary Ink Supplier",
-  "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allows an $(l:magic/ink)Ink$()-containing item to be connected to a machine as though it were inserted into that machine's $(l:magic/ink)Ink$() storage slot. The primary use-case for this is automatically supplying a $(l:magical_blocks/cinderhearth)Cinderhearth$() with multiple different colors of $(l:magic/ink)Ink$().",
+  "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allows an $(l:magic/ink)Ink$()-containing item to be connected to a machine's $(l:magic/ink)Ink$() storage. The primary use-case for this is automatically supplying a $(l:magical_blocks/cinderhearth)Cinderhearth$() with multiple different colors of $(l:magic/ink)Ink$().",
   "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. Use a Binding Tool to link it to its target.",
 
   "book.specutils.guidebook.moonstone_grow_lamp.page0.text": "The Moonstone Grow Lamp allows $(l:resources/jade_vines)Jade Vines$() to be grown in places where they can't access natural moonlight. Placing Moonstone Grow Lamp directly above a $(l:resources/jade_vines)Jade Vine's$() roots and powering it with redstone will enable the vine to grow.",
