@@ -70,9 +70,7 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 		super.loadAdditional(tag, registryLookup);
 
 		this.ownerUUID = PlayerOwned.readOwnerUUID(tag);
-		if (tag.contains("ownerName", Tag.TAG_STRING)) {
-			ownerName = tag.getString("ownerName");
-		}
+		this.ownerName = PlayerOwned.readOwnerName(tag);
 		if (tag.contains("pos", Tag.TAG_COMPOUND)) {
 			CompoundTag p = tag.getCompound("pos");
 			targetPos = new BlockPos(p.getInt("x"), p.getInt("y"), p.getInt("z"));
@@ -103,12 +101,7 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 		}
 
 		InkStorage inkStorage = inkStorageItem.getEnergyStorage(heldStack);
-
-		@Nullable BlockPos targetPos = heldStack.get(SpectralUtilitiesDataComponents.LINKED_POSITION);
-		if (targetPos == null) {
-			return;
-		}
-		BlockEntity targetBe = world.getBlockEntity(targetPos);
+		BlockEntity targetBe = world.getBlockEntity(blockEntity.targetPos);
 		if (targetBe == null) {
 			return;
 		}
@@ -117,7 +110,7 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 		}
 		InkStorage targetStorage = inkStorageBlockEntity.getEnergyStorage();
 
-		BlockState targetState = world.getBlockState(targetPos);
+		BlockState targetState = world.getBlockState(blockEntity.targetPos);
 		boolean canReceive = targetState.is(INK_RECEIVERS);
 		boolean canProvide = targetState.is(INK_PROVIDERS);
 

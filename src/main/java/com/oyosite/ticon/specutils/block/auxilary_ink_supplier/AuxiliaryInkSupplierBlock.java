@@ -4,6 +4,9 @@ import com.mojang.serialization.*;
 import com.oyosite.ticon.specutils.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.item_bowl.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
@@ -68,7 +71,7 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
 		if (blockEntity.isEmpty()) return ItemInteractionResult.CONSUME;
 
 		AuxiliaryInkSupplierBlockEntity auxiliaryInkSupplierBlockEntity = blockEntity.get();
-		if (stack.isEmpty() || stack.getItem() instanceof InkStorageItem<?> && this.exchangeStack(level, pos, player, hand, stack, auxiliaryInkSupplierBlockEntity, 0)) {
+		if ((stack.isEmpty() || stack.getItem() instanceof InkStorageItem<?>) && this.exchangeStack(level, pos, player, hand, stack, auxiliaryInkSupplierBlockEntity, 0)) {
 			auxiliaryInkSupplierBlockEntity.inventoryChanged();
 			auxiliaryInkSupplierBlockEntity.setOwner(player);
 		}
@@ -86,9 +89,9 @@ public class AuxiliaryInkSupplierBlock extends InWorldInteractionBlock {
 		return SHAPE;
 	}
 
-	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
+	@Nullable
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, BlockRegistry.BlockEntities.AUXILIARY_INK_SUPPLIER_TYPE, world.isClientSide ? null : AuxiliaryInkSupplierBlockEntity::serverTick);
 	}
 
