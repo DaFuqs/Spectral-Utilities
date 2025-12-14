@@ -130,6 +130,7 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 
 			inkStorageBlockEntity.setInkDirty();
 			targetBe.setChanged();
+			blockEntity.setChanged();
 		}
 
 		if (canProvide) {
@@ -149,13 +150,10 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 			if (transferredAmount > 0) {
 				inkStorageItem.setEnergyStorage(heldStack, inkStorage);
 			}
-
+			
 			inkStorageBlockEntity.setInkDirty();
 			targetBe.setChanged();
-		}
-
-		if (inkStorageItem instanceof EnderFlask && EnderFlask.getOwner(heldStack) != null) {
-			EnderFlask.setOwner(heldStack, new ResolvableProfile(Optional.ofNullable(blockEntity.ownerName), Optional.ofNullable(blockEntity.ownerUUID), new PropertyMap()));
+			blockEntity.setChanged();
 		}
 	}
 }
