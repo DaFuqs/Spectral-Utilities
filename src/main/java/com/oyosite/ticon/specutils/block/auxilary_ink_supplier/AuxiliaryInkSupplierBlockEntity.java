@@ -95,6 +95,10 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 	}
 
 	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, AuxiliaryInkSupplierBlockEntity blockEntity) {
+		if(blockEntity.targetPos == null) {
+			return;
+		}
+		
 		ItemStack heldStack = blockEntity.getItem(0);
 		if (!(heldStack.getItem() instanceof InkStorageItem<?> inkStorageItem)) {
 			return;

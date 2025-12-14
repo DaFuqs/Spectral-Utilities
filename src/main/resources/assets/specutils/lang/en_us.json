@@ -39,6 +39,7 @@
   "block.specutils.large_dragonbone_bud": "Large Dragonbone Cluster",
   "block.specutils.dragonbone_cluster": "Dragonbone Cluster",
   "item.specutils.pure_dragonbone": "Pure Dragonbone",
+  "item.specutils.pure_dragonbone_block": "Block of Pure Dragonbone",
 
   "item.specutils.ender_flask.tooltip.owner": "Owner: %s",
   "item.specutils.ender_flask.tooltip.unknown_player": "Unknown Player",
