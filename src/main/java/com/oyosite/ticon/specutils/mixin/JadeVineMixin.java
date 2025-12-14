@@ -14,14 +14,14 @@ public interface JadeVineMixin {
 
 	@Inject(at = @At("RETURN"), method = "isExposedToSunlight(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z", cancellable = true)
 	private static void modifyIsExposedToSunlight(Level world, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue()) {
+		if (cir.getReturnValue()) {
 			return;
 		}
 
 		BlockState state = world.getBlockState(blockPos.above());
 		boolean overchargedGrowLampAbove = (state.getBlock() instanceof MoonstoneGrowLampBlock) ? state.getValue(MoonstoneGrowLampBlock.OVERCHARGE) : false;
 		if (overchargedGrowLampAbove) {
-			cir.setReturnValue(false);
+			cir.setReturnValue(true);
 		}
 	}
 }

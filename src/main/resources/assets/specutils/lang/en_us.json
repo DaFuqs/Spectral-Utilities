@@ -48,14 +48,14 @@
 
   "item.specutils.ender_flask.tooltip": "§7Stores up to %d§7 %s",
 
-  "book.specutils.guidebook.ender_flasks": "Ender Flasks",
-  "book.specutils.guidebook.ender_flasks.page0.text": "The Ender Flask can hold as much $(l:magic/ink)Ink$() as an $(l:magic/ink_flask)Ink Flask$(), but can only hold ink of the same color as itself. When first crafted, the Ender Flask does nothing. You must use it to bind it to yourself, after which all Ender Flasks of the same color that are bound to you will hold the same ink.",
-  "book.specutils.guidebook.ender_flasks.page1.text": "This is just an example. Replace the $(l:general/pigment)Cyan Pigment$() with any two $(l:general/pigment)Pigments$() of the same color to get a matching Ender Flask.",
+  "book.specutils.guidebook.ender_flasks.name": "Ender Flasks",
+  "book.specutils.guidebook.ender_flasks.page0.text": "The Ender Flask can hold as much [Ink](entry://ink/ink) as an [Ink Flask](entry://ink/ink_flask), but can only hold [Ink](entry://ink/ink) of that one color. When first crafted, the Ender Flask does nothing. I have to use it to bind it to myself first, after which all Ender Flasks of the same color bound to me will act as the same Ink source.",
+  "book.specutils.guidebook.ender_flasks.page1.text": "Works with any color of [Pigment](entry://general/pigment) to give me a matching Ender Flask.",
 
-  "book.specutils.guidebook.auxiliary_ink_supplier": "Auxiliary Ink Supplier",
-  "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allows an $(l:magic/ink)Ink$()-containing item to be connected to a machine's $(l:magic/ink)Ink$() storage. The primary use-case for this is automatically supplying a $(l:magical_blocks/cinderhearth)Cinderhearth$() with multiple different colors of $(l:magic/ink)Ink$().",
-  "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. Use a Binding Tool to link it to its target.",
+  "book.specutils.guidebook.auxiliary_ink_supplier.name": "Auxiliary Ink Supplier",
+  "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allow me to connect an [Ink](entry://ink/ink)-containing item to an [Ink](entry://ink/ink) storage of any of my constructs.\\\n\\\nAs an example, I can use it to automatically supply a [Cinderhearth](entry://ink/cinderhearth) with multiple colors of Ink with ease.",
+  "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. I can use my trusty [Paintbrush](entry://general/paintbrush) to link it to its target.",
 
-  "book.specutils.guidebook.moonstone_grow_lamp.page0.text": "The Moonstone Grow Lamp allows $(l:resources/jade_vines)Jade Vines$() to be grown in places where they can't access natural moonlight. Placing Moonstone Grow Lamp directly above a $(l:resources/jade_vines)Jade Vine's$() roots and powering it with redstone will enable the vine to grow.",
-  "book.specutils.guidebook.moonstone_grow_lamp.page2.text": "Placing a block of $(l:resources/shimmerstone)Shimmerstone$() directly on top of the Moonstone Grow Lamp will overcharge it, causing the $(l:resources/jade_vines)Jade Vine$() beneath to die, as if in sunlight."
+  "book.specutils.guidebook.moonstone_grow_lamp.description.text": "I struggled a lot getting [Jade Vines](entry://general/jade_vines) to grow in places where they can't access natural moonlight.\\\nA Moonstone Grow Lamp directly above a [Jade Vine's](entry://general/jade_vines) roots, powered with Redstone will provide the plant with enough soft, moonlight-like light to allow it to grow, as if exposed to the Moon.",
+  "book.specutils.guidebook.moonstone_grow_lamp.shimmerstone.text": "Moving a block of [Shimmerstone](entry://general/shimmerstone) directly on top of the Moonstone Grow Lamp will overcharge it, causing the [Jade Vines](entry://general/jade_vines) beneath to die, as if in sunlight."
 }

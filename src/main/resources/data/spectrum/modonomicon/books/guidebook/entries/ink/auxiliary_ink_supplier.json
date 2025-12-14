@@ -1,0 +1,35 @@
+{
+  "name": "book.specutils.guidebook.auxiliary_ink_supplier.name",
+  "icon": {
+    "item": "specutils:calcite_auxiliary_ink_supplier"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "specutils:recipes/pedestal/calcite_auxiliary_ink_supplier"
+  },
+  "category": "spectrum:ink",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.specutils.guidebook.auxiliary_ink_supplier",
+      "text": "book.specutils.guidebook.auxiliary_ink_supplier.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "text": "book.specutils.guidebook.auxiliary_ink_supplier.page1.text",
+      "recipe_id": "specutils:calcite_auxiliary_ink_supplier"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "specutils:basalt_auxiliary_ink_supplier"
+    }
+  ]
+}
