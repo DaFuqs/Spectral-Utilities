@@ -54,8 +54,8 @@ public class MoonstoneGrowLampBlock extends Block {
 	@Override
 	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState state = super.getStateForPlacement(context);
-		state.setValue(BRIGHTNESS, context.getLevel().getBestNeighborSignal(context.getClickedPos()));
-		state.setValue(OVERCHARGE, context.getLevel().getBlockState(context.getClickedPos().above()).is(OVERCHARGE_BLOCKS));
+		state = state.setValue(BRIGHTNESS, context.getLevel().getBestNeighborSignal(context.getClickedPos()));
+		state = state.setValue(OVERCHARGE, context.getLevel().getBlockState(context.getClickedPos().above()).is(OVERCHARGE_BLOCKS));
 		return state;
 	}
 
