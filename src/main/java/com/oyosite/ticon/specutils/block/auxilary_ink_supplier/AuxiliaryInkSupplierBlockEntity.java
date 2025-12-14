@@ -3,6 +3,7 @@ package com.oyosite.ticon.specutils.block.auxilary_ink_supplier;
 import com.mojang.authlib.properties.*;
 import com.oyosite.ticon.specutils.*;
 import com.oyosite.ticon.specutils.block.*;
+import com.oyosite.ticon.specutils.config.*;
 import com.oyosite.ticon.specutils.data_components.*;
 import com.oyosite.ticon.specutils.item.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -10,6 +11,7 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.energy.*;
+import me.shedaniel.autoconfig.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
@@ -46,10 +48,12 @@ public class AuxiliaryInkSupplierBlockEntity extends InWorldInteractionBlockEnti
 
 	@Override
 	public boolean setTargetPos(BlockPos target) {
-		if (this.getBlockPos().distSqr(target) > 9) {
+		int range = AutoConfig.getConfigHolder(CommonConfig.class).getConfig().AuxiliaryInkSupplierRange;
+		if (this.getBlockPos().distSqr(target) > range * range) {
 			return false;
 		}
 		this.targetPos = target;
+		this.setChanged();
 		return true;
 	}
 

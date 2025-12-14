@@ -8,5 +8,6 @@ import me.shedaniel.autoconfig.annotation.*;
 public class CommonConfig implements ConfigData {
 
 	public boolean jadeVinesDropJadeJellyWhenRevived = true;
+	public int AuxiliaryInkSupplierRange = 3;
 
 }
