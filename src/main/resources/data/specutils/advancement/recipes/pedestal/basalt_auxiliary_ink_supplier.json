@@ -1,7 +1,7 @@
 {
   "criteria": {
-    "trigger": "revelationary:advancement_gotten",
     "can_use_moonstone_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }

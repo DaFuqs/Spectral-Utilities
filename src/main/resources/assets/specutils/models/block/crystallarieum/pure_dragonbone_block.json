@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"all": "specutils:block/pure_dragonbone_block"
+	}
+}

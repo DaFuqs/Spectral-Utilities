@@ -9,22 +9,12 @@
   },
   "experience": 8.0,
   "key": {
-    "E": {
-      "item": "spectrum:radiating_ender"
-    },
-    "F": {
-      "item": "spectrum:ink_flask"
-    },
-    "O": {
-      "item": "minecraft:obsidian"
-    },
-    "P": {
-      "item": "spectrum:black_pigment"
-    },
-    "Y": {
-      "item": "minecraft:ender_eye"
-    }
-  },,
+    "E": "spectrum:radiating_ender",
+    "F": "spectrum:ink_flask",
+    "O": "minecraft:obsidian",
+    "P": "spectrum:black_pigment",
+    "Y": "minecraft:ender_eye"
+  },
   "pattern": [
     "OYO",
     "PFP",
@@ -33,7 +23,7 @@
   "required_advancement": "specutils:recipes/pedestal/black_ender_flask",
   "result": {
     "count": 1,
-    "item": "specutils:black_ender_flask"
+    "id": "specutils:black_ender_flask"
   },
   "tier": "complex",
   "time": 1200

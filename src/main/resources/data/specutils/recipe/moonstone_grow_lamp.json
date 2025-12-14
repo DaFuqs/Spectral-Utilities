@@ -9,15 +9,9 @@
   },
   "experience": 2.0,
   "key": {
-    "B": {
-      "item": "spectrum:polished_basalt"
-    },
-    "C": {
-      "item": "spectrum:moonstone_core"
-    },
-    "L": {
-      "item": "spectrum:moonstone_basalt_lamp"
-    }
+    "B": "spectrum:polished_basalt",
+    "C": "spectrum:moonstone_core",
+    "L": "spectrum:moonstone_basalt_light"
   },
   "pattern": [
     "BLB",
@@ -27,7 +21,7 @@
   "required_advancement": "specutils:recipes/pedestal/moonstone_grow_lamp",
   "result": {
     "count": 1,
-    "item": "specutils:moonstone_grow_lamp"
+    "id": "specutils:moonstone_grow_lamp"
   },
   "tier": "complex",
   "time": 600

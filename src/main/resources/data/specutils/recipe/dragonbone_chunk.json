@@ -1,7 +1,10 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "additional_recipe_manager_outputs": [
-    "spectrum:dragonbone_chunk"
+    {
+      "count": 1,
+      "id": "spectrum:dragonbone_chunk"
+    }
   ],
   "catalysts": [
     {
@@ -31,15 +34,33 @@
   ],
   "grows_without_catalyst": false,
   "growth_stage_states": [
-    "specutils:small_dragonbone_bud",
-    "specutils:large_dragonbone_bud",
-    "specutils:dragonbone_cluster"
+    {
+      "Name": "specutils:small_dragonbone_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "specutils:large_dragonbone_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "specutils:dragonbone_cluster",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    }
   ],
   "ingredient": {
     "item": "spectrum:dragonbone_chunk"
   },
-  "ink_color": "lime",
+  "ink_color": "spectrum:lime",
   "ink_cost_tier": 3,
-  "required_advancement": "spectrum:recipes/crystallarieum/dragonbone_chunk",
+  "required_advancement": "specutils:recipes/crystallarieum/dragonbone_chunk",
   "seconds_per_growth_stage": 180
 }

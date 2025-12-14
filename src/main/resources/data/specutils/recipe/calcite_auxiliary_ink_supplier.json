@@ -9,15 +9,9 @@
   },
   "experience": 4.0,
   "key": {
-    "B": {
-      "item": "spectrum:polished_calcite"
-    },
-    "M": {
-      "item": "spectrum:moonstone_storage_block"
-    },
-    "P": {
-      "item": "spectrum:purple_pigment"
-    }
+    "B": "spectrum:polished_calcite",
+    "M": "spectrum:polished_moonstone",
+    "P": "spectrum:purple_pigment"
   },
   "pattern": [
     "BMB",
@@ -27,7 +21,7 @@
   "required_advancement": "specutils:recipes/pedestal/calcite_auxiliary_ink_supplier",
   "result": {
     "count": 1,
-    "item": "specutils:calcite_auxiliary_ink_supplier"
+    "id": "specutils:calcite_auxiliary_ink_supplier"
   },
   "tier": "complex",
   "time": 1200
