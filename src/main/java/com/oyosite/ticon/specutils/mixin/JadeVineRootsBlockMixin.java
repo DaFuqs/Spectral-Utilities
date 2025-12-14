@@ -51,14 +51,15 @@ public abstract class JadeVineRootsBlockMixin {
 		}
 
 		long dayTime = world.getDayTime();
-		if (TimeHelper.getDay(dayTime + 1000L) == TimeHelper.getDay(jv.getLastGrownTime() + 1000L)) return false;
+		if (TimeHelper.getDay(dayTime + 1000L) == TimeHelper.getDay(jv.getLastGrownTime() + 1000L)) {
+			return false;
+		}
 
 		for (int i = 0; i < 8; i++) {
 			BlockPos pos = blockPos.above(1 + i);
 			BlockState state = world.getBlockState(pos);
 			if (state.getBlock() instanceof MoonstoneGrowLampBlock) {
-				original = state.getValue(MoonstoneGrowLampBlock.BRIGHTNESS) > 7 + i;
-				return original;
+				return state.getValue(MoonstoneGrowLampBlock.BRIGHTNESS) > 7 + i;
 			}
 			if (state.isSolid()) {
 				break;
