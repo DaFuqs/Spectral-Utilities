@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
       "text": "book.specutils.guidebook.ender_flasks.page1.text",
-      "recipe_id": "specutils:cyan_ender_flask"
+      "recipe_id": "specutils:pedestal/tier4/cyan_ender_flask"
     }
   ]
 }

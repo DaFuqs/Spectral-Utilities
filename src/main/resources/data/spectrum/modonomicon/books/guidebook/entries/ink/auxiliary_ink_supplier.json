@@ -24,12 +24,12 @@
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
       "text": "book.specutils.guidebook.auxiliary_ink_supplier.page1.text",
-      "recipe_id": "specutils:calcite_auxiliary_ink_supplier"
+      "recipe_id": "specutils:pedestal/tier4/calcite_auxiliary_ink_supplier"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "specutils:basalt_auxiliary_ink_supplier"
+      "recipe_id": "specutils:pedestal/tier4/basalt_auxiliary_ink_supplier"
     }
   ]
 }

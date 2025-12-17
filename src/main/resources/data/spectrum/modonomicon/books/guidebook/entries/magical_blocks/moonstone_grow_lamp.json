@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "specutils:moonstone_grow_lamp"
+      "recipe_id": "specutils:pedestal/tier4/moonstone_grow_lamp"
     },
     {
       "type": "modonomicon:spotlight",
