@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:modify_drops",
+  "block": {
+    "blocks": "spectrum:cracked_dragonbone"
+  },
+  "modify_drops": [
+    {
+      "input": {
+        "item": "spectrum:dragonbone_chunk"
+      },
+      "output": "specutils:pure_dragonbone"
+    }
+  ]
+}

@@ -60,7 +60,7 @@
     "item": "spectrum:dragonbone_chunk"
   },
   "ink_color": "spectrum:lime",
-  "ink_cost_tier": 3,
+  "ink_cost_tier": 2,
   "required_advancement": "specutils:recipes/crystallarieum/dragonbone_chunk",
   "seconds_per_growth_stage": 180
 }
