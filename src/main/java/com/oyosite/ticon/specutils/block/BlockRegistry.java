@@ -52,6 +52,8 @@ public class BlockRegistry {
 		for (Block block : NoxwoodDeco.LAMPS.values()) {
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
 		}
+		
+		DRAGONBONE.putBlockRenderLayerMap();
 	}
 
 }

@@ -2,7 +2,10 @@ package com.oyosite.ticon.specutils.block;
 
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.itemgroup.v1.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -34,7 +37,7 @@ public class CrystallarieumMaterial {
 		this.pureItem = pureItem;
 		this.pureBlock = pureBlock;
 	}
-
+	
 	public static class Builder {
 		private Block smallBud;
 		private Block largeBud;
@@ -103,6 +106,11 @@ public class CrystallarieumMaterial {
 		entries.accept(this.cluster);
 		entries.accept(this.pureItem);
 		entries.accept(this.pureBlock);
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void putBlockRenderLayerMap() {
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), this.smallBud, this.largeBud, cluster);
 	}
 
 }

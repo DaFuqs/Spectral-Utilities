@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/block",
+	"parent": "minecraft:block/cube_all",
 	"textures": {
-		"all": "specutils:block/pure_dragonbone_block"
+		"all": "specutils:block/crystallarieum/pure_dragonbone_block"
 	}
 }

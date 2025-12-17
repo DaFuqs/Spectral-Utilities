@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "specutils:item/pure_dragonbone"
+    "layer0": "specutils:item/crystallarieum/pure_dragonbone"
   }
 }
