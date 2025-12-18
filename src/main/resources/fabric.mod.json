@@ -6,11 +6,13 @@
   "name": "Spectral Utilities",
   "description": "A collection of small but useful features for Spectrum",
   "authors": [
-    "Ned Hunter"
+    "Ned Hunter",
+    "DaFuqs"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/DaFuqs/",
+    "sources": "https://github.com/DaFuqs/specutils",
+    "issues": "https://github.com/DaFuqs/specutils/issues"
   },
 
   "license": "MIT",
