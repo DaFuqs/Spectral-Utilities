@@ -1,5 +1,6 @@
 {
   "name": "book.specutils.guidebook.auxiliary_ink_supplier.name",
+  "description": "book.specutils.added_by_specutils",
   "icon": {
     "item": "specutils:calcite_auxiliary_ink_supplier"
   },
@@ -12,23 +13,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
+  "x": 9,
   "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.specutils.guidebook.auxiliary_ink_supplier",
+      "title": "book.specutils.guidebook.auxiliary_ink_supplier.name",
       "text": "book.specutils.guidebook.auxiliary_ink_supplier.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "container.spectrum.rei.pedestal_recipe",
-      "text": "book.specutils.guidebook.auxiliary_ink_supplier.page1.text",
-      "recipe_id": "specutils:pedestal/tier4/calcite_auxiliary_ink_supplier"
+      "recipe_id": "specutils:pedestal/tier4/calcite_auxiliary_ink_supplier",
+      "text": "book.specutils.guidebook.auxiliary_ink_supplier.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "specutils:pedestal/tier4/basalt_auxiliary_ink_supplier"
     }
   ]

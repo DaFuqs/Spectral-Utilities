@@ -48,6 +48,13 @@
 
   "item.specutils.ender_flask.tooltip": "§7Stores up to %d§7 %s",
 
+  "book.specutils.added_by_specutils": "§oAdded by Spectral Utilities",
+
+  "book.specutils.guidebook.specutils.name": "Addon: Spectral Utilities",
+  "book.specutils.guidebook.specutils.description": "A collection of small but useful features",
+  "book.specutils.guidebook.specutils.about.title": "Spectral Utilities",
+  "book.specutils.guidebook.specutils.about.text": "*by Ned Hunter*\\\n\\\nAdds more decoration and automation options, as well as various quality of life features to unlock as you go.",
+
   "book.specutils.guidebook.ender_flasks.name": "Ender Flasks",
   "book.specutils.guidebook.ender_flasks.page0.text": "The Ender Flask can hold as much [Ink](entry://ink/ink) as an [Ink Flask](entry://ink/ink_flask), but can only hold [Ink](entry://ink/ink) of that one color. When first crafted, the Ender Flask does nothing. I have to use it to bind it to myself first, after which all Ender Flasks of the same color bound to me will act as the same Ink source.",
   "book.specutils.guidebook.ender_flasks.page1.text": "Works with any color of [Pigment](entry://general/pigment) to give me a matching Ender Flask.",
@@ -56,6 +63,17 @@
   "book.specutils.guidebook.auxiliary_ink_supplier.page0.text": "The Auxiliary Ink Supplier allow me to connect an [Ink](entry://ink/ink)-containing item to an [Ink](entry://ink/ink) storage of any of my constructs.\\\n\\\nAs an example, I can use it to automatically supply a [Cinderhearth](entry://ink/cinderhearth) with multiple colors of Ink with ease.",
   "book.specutils.guidebook.auxiliary_ink_supplier.page1.text": "Has a max distance of 3 blocks. I can use my trusty [Paintbrush](entry://general/paintbrush) to link it to its target.",
 
-  "book.specutils.guidebook.moonstone_grow_lamp.description.text": "I struggled a lot getting [Jade Vines](entry://general/jade_vines) to grow in places where they can't access natural moonlight.\\\nA Moonstone Grow Lamp directly above a [Jade Vine's](entry://general/jade_vines) roots, powered with Redstone will provide the plant with enough soft, moonlight-like light to allow it to grow, as if exposed to the Moon.",
-  "book.specutils.guidebook.moonstone_grow_lamp.shimmerstone.text": "Moving a block of [Shimmerstone](entry://general/shimmerstone) directly on top of the Moonstone Grow Lamp will overcharge it, causing the [Jade Vines](entry://general/jade_vines) beneath to die, as if in sunlight."
+  "book.specutils.guidebook.moonstone_grow_lamp.description.text": "I struggled a lot getting [Jade Vines](entry://general/jade_vines) to grow in places where they can't access natural moonlight.\\\nA Moonstone Grow Lamp directly above a [Jade Vine's](entry://general/jade_vines) roots, powered with Redstone will provide the plant with enough soft, moonlight-like light to allow it to flourish, as if exposed to the Moon.",
+  "book.specutils.guidebook.moonstone_grow_lamp.shimmerstone.text": "Moving a block of [Shimmerstone](entry://general/shimmerstone) directly on top of the Moonstone Grow Lamp will overcharge it, causing the [Jade Vines](entry://general/jade_vines) beneath to die, as if in sunlight.",
+
+  "book.specutils.guidebook.growing_dragonbone.name": "Pure Dragonbone",
+  "book.specutils.guidebook.growing_dragonbone.about.text": "Growing Dragonbone?\\\nGrowing Dragonbone.\\\n\\\nKinda morbid, thinking about it? But way nicer compared to harming actual creatures.",
+  "book.specutils.guidebook.growing_dragonbone.recipe.text": "   🎺 🎺 🎺",
+  "book.specutils.guidebook.mixed_noxwood_deco.name": "Mixed Noxwood Lanterns",
+  "book.specutils.guidebook.mixed_noxwood_deco.about.text": "Lanterns of a single variant of [Noxwood](entry://dimension/noxwood) are nice, but who is to say I can't mix and match?",
+  "book.specutils.guidebook.mixed_noxwood_deco.recipe.text": "Gills from one variant, Blocks and Slabs of the other."
+
+
+
+
 }

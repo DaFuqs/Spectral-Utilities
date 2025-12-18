@@ -1,0 +1,72 @@
+{
+  "name": "book.specutils.guidebook.mixed_noxwood_deco.name",
+  "description": "book.specutils.added_by_specutils",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_noxwood"
+  },
+  "icon": {
+    "item": "specutils:ebony_slate_noxwood_lantern"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/noxwood"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 7,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "book.specutils.guidebook.mixed_noxwood_deco.name",
+      "items": [
+        {
+          "id": "specutils:chestnut_ebony_noxwood_lantern"
+        },
+        {
+          "id": "specutils:chestnut_ivory_noxwood_lantern"
+        },
+        {
+          "id": "specutils:chestnut_slate_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ebony_chestnut_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ebony_ivory_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ebony_slate_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ivory_chestnut_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ivory_ebony_noxwood_lantern"
+        },
+        {
+          "id": "specutils:ivory_slate_noxwood_lantern"
+        },
+        {
+          "id": "specutils:slate_chestnut_noxwood_lantern"
+        },
+        {
+          "id": "specutils:slate_ebony_noxwood_lantern"
+        },
+        {
+          "id": "specutils:slate_ivory_noxwood_lantern"
+        }
+      ],
+      "text": "book.specutils.guidebook.mixed_noxwood_deco.about.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "specutils:pedestal/tier1/noxwood/ebony_slate_noxwood_lantern",
+      "text": "book.specutils.guidebook.mixed_noxwood_deco.recipe.text"
+    }
+  ]
+}

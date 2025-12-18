@@ -1,0 +1,35 @@
+{
+  "name": "book.specutils.guidebook.growing_dragonbone.name",
+  "description": "book.specutils.added_by_specutils",
+  "icon": {
+    "item": "specutils:pure_dragonbone"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "specutils:recipes/crystallarieum/dragonbone_chunk"
+  },
+  "category": "spectrum:ink",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:ink/pure_resources"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.specutils.guidebook.growing_dragonbone.name",
+      "text": "book.specutils.guidebook.growing_dragonbone.about.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "specutils:crystallarieum/dragonbone_chunk",
+      "text": "book.specutils.guidebook.growing_dragonbone.recipe.text"
+    }
+  ]
+}

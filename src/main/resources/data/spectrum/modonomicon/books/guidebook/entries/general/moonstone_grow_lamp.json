@@ -1,5 +1,6 @@
 {
   "name": "block.specutils.moonstone_grow_lamp",
+  "description": "book.specutils.added_by_specutils",
   "icon": {
     "item": "specutils:moonstone_grow_lamp"
   },
@@ -7,13 +8,17 @@
     "type": "modonomicon:advancement",
     "advancement_id": "specutils:recipes/pedestal/moonstone_grow_lamp"
   },
-  "category": "spectrum:magical_blocks",
+  "category": "spectrum:general",
   "hide_while_locked": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/jade_vines"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 4,
+  "x": 2,
+  "y": 10,
   "pages": [
     {
       "type": "modonomicon:text",

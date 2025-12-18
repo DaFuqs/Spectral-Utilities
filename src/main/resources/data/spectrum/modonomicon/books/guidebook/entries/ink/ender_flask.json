@@ -1,5 +1,6 @@
 {
   "name": "book.specutils.guidebook.ender_flasks.name",
+  "description": "book.specutils.added_by_specutils",
   "icon": {
     "item": "specutils:cyan_ender_flask"
   },
@@ -9,15 +10,19 @@
   },
   "category": "spectrum:ink",
   "hide_while_locked": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:ink/ink_flask"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 9,
+  "x": 8,
   "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.specutils.guidebook.ender_flasks",
+      "title": "book.specutils.guidebook.ender_flasks.name",
       "text": "book.specutils.guidebook.ender_flasks.page0.text"
     },
     {
