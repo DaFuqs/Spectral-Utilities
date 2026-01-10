@@ -83,8 +83,8 @@ class AuxiliaryInkSupplierBlockEntity(pos: BlockPos, state: BlockState?) :
     }
 
     companion object {
-        val INK_RECEIVERS: TagKey<Block?> = TagKey.create<Block?>(Registries.BLOCK, id("ink_receivers"))
-        val INK_PROVIDERS: TagKey<Block?> = TagKey.create<Block?>(Registries.BLOCK, id("ink_providers"))
+        val INK_RECEIVERS: TagKey<Block> = TagKey.create(Registries.BLOCK, id("ink_receivers"))
+        val INK_PROVIDERS: TagKey<Block> = TagKey.create(Registries.BLOCK, id("ink_providers"))
 
         @JvmStatic
         fun serverTick(

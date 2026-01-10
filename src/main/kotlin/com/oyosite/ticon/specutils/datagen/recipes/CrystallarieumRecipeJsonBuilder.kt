@@ -5,16 +5,6 @@ import com.google.gson.JsonObject
 import com.oyosite.ticon.specutils.block.CrystallarieumMaterial
 import de.dafuqs.spectrum.api.energy.color.InkColor
 import de.dafuqs.spectrum.registries.SpectrumRecipeTypes
-import net.minecraft.advancement.Advancement
-import net.minecraft.advancement.criterion.CriterionConditions
-import net.minecraft.data.server.recipe.RecipeJsonProvider
-import net.minecraft.item.Item
-import net.minecraft.item.ItemConvertible
-import net.minecraft.recipe.Ingredient
-import net.minecraft.recipe.RecipeSerializer
-import net.minecraft.registry.Registries
-import net.minecraft.registry.tag.TagKey
-import net.minecraft.util.Identifier
 import java.util.function.Consumer
 
 open class CrystallarieumRecipeJsonBuilder(val material: CrystallarieumMaterial, val secondPerGrowthStage: Int, inkColor: InkColor, inkCostTier: Int, catalystRequired: Boolean = true) {
@@ -22,7 +12,7 @@ open class CrystallarieumRecipeJsonBuilder(val material: CrystallarieumMaterial,
     val catalysts = JsonArray()
     val outputs = JsonArray()
 
-    var id = material.recipeID?:Registries.ITEM.getId(material.pureItem.asItem())
+    /*var id = material.recipeID?:Registries.ITEM.getId(material.pureItem.asItem())
 
     var advancementBuilder: Advancement.Builder = Advancement.Builder.createUntelemetered()
     var advancementId: Identifier? = null
@@ -90,5 +80,5 @@ open class CrystallarieumRecipeJsonBuilder(val material: CrystallarieumMaterial,
 
         override fun getAdvancementId(): Identifier = builder.advancementId?:builder.id.withPrefixedPath("recipes/crystallarieum/")
 
-    }
+    }*/
 }

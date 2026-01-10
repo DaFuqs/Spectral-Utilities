@@ -59,7 +59,7 @@ open class PigmentPedestalRecipeJsonBuilder(result: ItemLike, count: Int = 1) {
 
     fun criterion(criterion: String, conditions: Criterion<*>) = apply { advancementBuilder.addCriterion(criterion, conditions) }
 
-    fun offerTo(exporter: RecipeOutput) = exporter.accept(id, PigmentPedestalRecipeJsonProvider(this), advancementBuilder.build())
+    /*fun offerTo(exporter: RecipeOutput) = exporter.accept(id, PigmentPedestalRecipeJsonProvider(this), advancementBuilder.build())
 
     class PigmentPedestalRecipeJsonProvider(val builder: PigmentPedestalRecipeJsonBuilder): RecipeJsonProvider{
         override fun serialize(json: JsonObject) {
@@ -76,7 +76,7 @@ open class PigmentPedestalRecipeJsonBuilder(result: ItemLike, count: Int = 1) {
 
         override fun getAdvancementId(): ResourceLocation = builder.advancementId?:builder.id.withPrefixedPath("recipes/pedestal/")
 
-    }
+    }*/
 
 
 }

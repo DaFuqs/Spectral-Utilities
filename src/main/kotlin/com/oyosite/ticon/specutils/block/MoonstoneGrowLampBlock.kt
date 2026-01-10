@@ -81,6 +81,6 @@ class MoonstoneGrowLampBlock(properties: Properties) : Block(properties.lightLev
         @JvmField
 		val OVERCHARGE: BooleanProperty = BooleanProperty.create("overcharge")
 
-        val OVERCHARGE_BLOCKS: TagKey<Block?> = TagKey.create<Block?>(Registries.BLOCK, id("overcharge_blocks"))
+        val OVERCHARGE_BLOCKS: TagKey<Block> = TagKey.create<Block>(Registries.BLOCK, id("overcharge_blocks"))
     }
 }

@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "2.3.0"
     id ("fabric-loom") version "1.11-SNAPSHOT"
@@ -118,10 +121,13 @@ dependencies {
     }
 }
 
+val archivesBaseName = property("archives_base_name")
+
 tasks {
     processResources {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         inputs.property("version", project.version)
+        inputs.property("archives_base_name", archivesBaseName)
         //inputs.property("minecraft_version", property("minecraft_version"))
         //inputs.property("loader_version", property("loader_version"))
         //filteringCharset = "UTF-8"
@@ -138,8 +144,9 @@ tasks {
         }
     }
     jar {
+
         from("LICENSE") {
-            rename { "${it}_${property("archivesBaseName")}"}
+            rename { "${it}_${archivesBaseName}"}
         }
     }
 
@@ -169,6 +176,16 @@ tasks {
             }*/
         }
     }
+
+    compileJava{
+        targetCompatibility = "21"
+        sourceCompatibility = "21"
+    }
+
+    compileKotlin{
+        compilerOptions.jvmTarget = JvmTarget.JVM_21
+        compilerOptions.freeCompilerArgs.set(listOf("-Xcontext-parameters"))
+    }
 }
 
 /*tasks.withType(JavaCompile).configureEach {
@@ -183,7 +200,4 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
-
-
-
 
