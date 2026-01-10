@@ -13,7 +13,7 @@ import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 
 object ItemRegistry {
-    val ENDER_FLASKS: Array<Item> = DyeColor.entries.map { register(it.getName() + "_ender_flask", EnderFlask(Item.Properties().stacksTo(1), InkColor.ofDyeColor(it))) }.toTypedArray()
+    val ENDER_FLASKS: Array<EnderFlask> = DyeColor.entries.map { register(it.getName() + "_ender_flask", EnderFlask(Item.Properties().stacksTo(1), InkColor.ofDyeColor(it))) }.toTypedArray()
 
     init {
 
@@ -52,7 +52,7 @@ object ItemRegistry {
     fun register() {
     }
 
-    private fun register(name: String, item: Item): Item {
-        return Registry.register<Item?, Item>(BuiltInRegistries.ITEM, id(name), item)
+    private fun <T: Item> register(name: String, item: T): T {
+        return Registry.register(BuiltInRegistries.ITEM, id(name), item)
     }
 }

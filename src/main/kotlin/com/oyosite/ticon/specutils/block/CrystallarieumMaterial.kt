@@ -18,11 +18,11 @@ import net.minecraft.world.level.material.PushReaction
 import java.util.Map
 
 class CrystallarieumMaterial(
-    private val smallBud: Block,
-    private val largeBud: Block,
-    private val cluster: Block,
-    private val pureItem: Item,
-    private val pureBlock: Block
+    val smallBud: Block,
+    val largeBud: Block,
+    val cluster: Block,
+    val pureItem: Item,
+    val pureBlock: Block
 ) {
     class Builder {
         private var smallBud: Block? = null

@@ -54,7 +54,7 @@ class SpectralUtilities : ModInitializer {
 
     companion object {
         const val MOD_ID: String = "specutils"
-        val LOGGER: Logger? = LoggerFactory.getLogger("spectral-utilities")
+        val LOGGER: Logger = LoggerFactory.getLogger("spectral-utilities")
 
         @JvmStatic
 		fun id(name: String): ResourceLocation {

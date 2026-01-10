@@ -3,6 +3,7 @@ package com.oyosite.ticon.specutils.item
 import com.oyosite.ticon.specutils.component.ScoreboardComponentEntrypoint
 import com.oyosite.ticon.specutils.component.StaticEnderInkStorageComponent
 import com.oyosite.ticon.specutils.ink.ColorLockedInkStorage
+import com.oyosite.ticon.specutils.util.toEnglishName
 import de.dafuqs.spectrum.api.energy.InkStorage
 import de.dafuqs.spectrum.api.energy.color.InkColor
 import de.dafuqs.spectrum.api.energy.storage.SingleInkStorage
@@ -18,8 +19,9 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.level.Level
+import kotlin.jvm.optionals.getOrNull
 
-class EnderFlask(settings: Properties, protected var inkColor: InkColor?) :
+class EnderFlask(settings: Properties, var inkColor: InkColor?) :
     InkFlaskItem(settings, StaticEnderInkStorageComponent.CAPACITY) {
     override fun getEnergyStorage(itemStack: ItemStack): SingleInkStorage? {
         val owner: ResolvableProfile? = getOwner(itemStack)
@@ -30,6 +32,9 @@ class EnderFlask(settings: Properties, protected var inkColor: InkColor?) :
         val storage = ScoreboardComponentEntrypoint.ENDER_FLASK.get(scoreboard)
         return storage!![level!!, getOwner(itemStack)!!.id().get(), inkColor!!]
     }
+
+    val rawColorName get() = inkColor?.dyeColor?.getOrNull()?.name?.lowercase() ?: "unknown_color"
+    val colorName get() = inkColor?.dyeColor?.getOrNull()?.name?.toEnglishName?:"Unknown Color"
 
     override fun setEnergyStorage(itemStack: ItemStack, storage: InkStorage?) {
         val owner: ResolvableProfile? = getOwner(itemStack)
