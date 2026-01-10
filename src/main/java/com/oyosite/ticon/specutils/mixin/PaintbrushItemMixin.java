@@ -3,7 +3,6 @@ package com.oyosite.ticon.specutils.mixin;
 import com.oyosite.ticon.specutils.block.*;
 import com.oyosite.ticon.specutils.data_components.*;
 import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
