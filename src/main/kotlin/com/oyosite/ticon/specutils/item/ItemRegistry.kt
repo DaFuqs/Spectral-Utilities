@@ -15,8 +15,6 @@ import net.minecraft.world.item.Item
 object ItemRegistry {
     val ENDER_FLASKS: Array<Item> = DyeColor.entries.map { register(it.getName() + "_ender_flask", EnderFlask(Item.Properties().stacksTo(1), InkColor.ofDyeColor(it))) }.toTypedArray()
 
-    val BINDING_TOOL = register("binding_tool", BindingTool{stacksTo(1)})
-
     init {
 
         /*ENDER_FLASKS = Array<Item>(DyeColor.entries.size){null}
@@ -52,7 +50,6 @@ object ItemRegistry {
     }
 
     fun register() {
-        BINDING_TOOL
     }
 
     private fun register(name: String, item: Item): Item {
